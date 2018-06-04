@@ -125,8 +125,34 @@
 </div>
     </div>
     <div class="tab-pane" id="messages1" role="tabpanel">
-        <p>3. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-        Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
+       
+             <div class="form-group">
+    <label for="teacher" class="form-control-label"></label>
+        <select class="form-control" id="edit-asig" name="teacher">
+           
+          <option value="">Seleccione Apoderado</option>
+           @foreach ($teachers as $id =>$correo)
+
+            <option value="{{ $id }}"
+            {{ $user->teacher->pluck('id')->contains($id) ? 'selected="selected"' : '' }}>
+            {{ $correo}}
+            </option>
+         
+            @endforeach
+        </select>
+
+        {!! $errors->first('teacher','<span class=error>:message</span>')!!}
+</div>
+
+
+
+
+
+
+
+
+
+
     </div>
     <div class="tab-pane" id="settings1" role="tabpanel">
         <p>4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>

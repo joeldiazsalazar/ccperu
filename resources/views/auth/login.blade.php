@@ -58,9 +58,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="redirect">
-                                    Olvidastes tu contraseña?
-                                </a>
+                           
                             </div>
                         </div>
                         

@@ -583,7 +583,7 @@ textarea {
 .nav-tabs {
     .slide {
         @include bg(#1b8bf9);
-        width: calc(100% / 4);
+        width: calc(100% / 2);
         height: 4px;
         @include pos(absolute);
         @include transition(left 0.3s ease-out);
@@ -619,7 +619,7 @@ textarea {
 
     .nav-item {
         @include bg-c(#fff);
-        width: calc(100% / 4);
+        width: calc(100% / 2);
         @include t-a(center);
 
         a {

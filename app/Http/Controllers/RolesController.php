@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StoreRoleRequest;
 use Illuminate\Http\Request;
 use App\Role;
 use Alert;
@@ -20,7 +20,7 @@ class RolesController extends Controller
     public function index()
     {
        //return Role::with('user')->get();
-        $roles = Role::all();
+         $roles = Role::orderBy('name')->paginate(5);
         
         return view('roles.index', compact('roles'));
     }
@@ -41,7 +41,7 @@ class RolesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
         $rol = Role::create($request->all());
 
@@ -81,8 +81,6 @@ class RolesController extends Controller
     {
         $roles = Role::findOrFail($id);
 
-        
-
         return view('roles.edit',compact('roles'));
     }
 
@@ -93,14 +91,14 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRoleRequest $request, $id)
     {
         $roles = Role::findOrFail($id);
 
         $roles->update($request->all());
 
         Alert::success('Rol actualizado satisfactoriamente', 'Éxito')->persistent("Close");
-        return back();
+        return redirect()->route('roles.index');
     }
 
     /**

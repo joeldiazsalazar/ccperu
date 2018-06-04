@@ -10,6 +10,7 @@ use App\Role;
 use App\Student;
 use App\User;
 use App\Attorney;
+use App\Teacher;
 
 class UsersController extends Controller
 {
@@ -28,7 +29,7 @@ class UsersController extends Controller
     public function index()
     {
         
-        $users = User::all();
+        $users = User::orderBy('name')->paginate(5);
         
         return view('auth.index', compact('users'));
     }
@@ -74,7 +75,7 @@ class UsersController extends Controller
     {
 
         //$consulta = DB::table('mensajes')->where('id', $id)->first();
-
+        
         $users = User::findOrFail($id);
         return view('auth.show',compact('users'));
 
@@ -90,8 +91,9 @@ class UsersController extends Controller
 
         $students = Student::pluck('email','id');
         $attorneys = Attorney::pluck('dni','id');
+        $teachers = Teacher::pluck('correo','id');
 
-        return view('auth.edit',compact('user','students','attorneys'));
+        return view('auth.edit',compact('user','students','attorneys','teachers'));
 
     }
 
@@ -114,8 +116,9 @@ class UsersController extends Controller
 
         $user->student()->sync($request->student);
         $user->attorney()->sync($request->attorney);
+        $user->teacher()->sync($request->teacher);
 
-        return back()->with('info','usuario actualizado');
+        return redirect()->route('users.index');
     }
 
     /**

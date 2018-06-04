@@ -37,7 +37,9 @@
                             </div>
 
 <div class="card-block">
-
+{{--  <div class="input-group"> <span class="input-group-addon">Buscar</span>
+        <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el alumno que deseas Buscar...">
+      </div> --}}
 <table class="table table-hover">
 	
 
@@ -45,8 +47,8 @@
 	<tr>
 	<th>ID</th>
 	<th>Nombre</th>
-	<th>Role</th>
-	<th>Assigned</th>
+	<th>Rol</th>
+	<th>Asignacion</th>
 	<th>Acciones</th>
 	</tr>
 </thead>
@@ -74,7 +76,7 @@
 		
 		@endforeach
 
-			@foreach($user->attorney as $attorneys)
+		@foreach($user->attorney as $attorneys)
 		<a href="/attorneys/show/{{ $attorneys->id }}">
 
 			{{ $attorneys->dni }}
@@ -82,7 +84,13 @@
 		</a>
 		@endforeach
 	
+		@foreach($user->teacher as $teachers)
+		<a href="/teachers/show/{{ $teachers->id }}">
 
+			{{ $teachers->correo }}
+
+		</a>
+		@endforeach
 
 		
 	
@@ -102,6 +110,10 @@
 
 </tr>
 	@endforeach
+
+	{{ $users->links('vendor.pagination.bootstrap-4') }}
+
+
 </tbody>
 </table>
 

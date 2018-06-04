@@ -48,7 +48,7 @@
 <form method="POST" action=" {{ route('teachers.update', $teacher->id)}} " enctype="multipart/form-data">
     {!! method_field('PUT') !!}
 
-    <a href="{{ Storage::url($teacher->documentos)}}">documento</a>
+{{--     <a href="{{ Storage::url($teacher->documentos)}}">documento</a> --}}
 
     {!! csrf_field() !!}
 

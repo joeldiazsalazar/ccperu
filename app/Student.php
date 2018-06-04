@@ -33,4 +33,9 @@ class Student extends Model
 
     }
 
+      public function enrollment(){
+        
+        return $this->hasMany(Enrollment::class);
+    }
+
 }

@@ -97,6 +97,12 @@
 
 </tr>
 	@endforeach
+
+
+
+{{ $students->links('vendor.pagination.bootstrap-4') }}
+
+	
 </tbody>
 </table>
 

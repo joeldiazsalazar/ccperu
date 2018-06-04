@@ -10,13 +10,13 @@
                 <div class="row">
                     <div class="col-sm-12 p-0">
                         <div class="main-header">
-                            <h4>General Elements</h4>
+                            <h4>Control de Apoderados</h4>
                             <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                                 <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-home"></i></a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="#">Forms</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="general-elements-bootstrap.html">General Elements</a>
+                                <li class="breadcrumb-item"><a href="general-elements-bootstrap.html">Control de Apoderados</a>
                                 </li>
                             </ol>
                         </div>
@@ -37,9 +37,10 @@
 
     {!! csrf_field() !!}
 
+<div class="row">
 <div class="form-group col-md-3">
     <label for="nombres" class="form-control-label">Nombre Completo</label>
-    <input type="text" class="form-control" id="nombres" aria-describedby="emailHelp" placeholder="" name="nombres" value="{{ old('nombres')}}">
+    <input type="text" class="form-control" id="nombres" aria-describedby="emailHelp" placeholder="" name="nombres" value="{{ old('nombres')}}" onkeyup="copyatt()">
 
     {!! $errors->first('nombres','<span class=error>:message</span>')!!}
 </div>
@@ -66,7 +67,9 @@
 
         {!! $errors->first('dni','<span class=error>:message</span>')!!}
 </div>
+</div>
 
+<div class="row">
 <div class="form-group col-md-3">
     <label for="sexo" class="form-control-label">sexo</label>
         <br>
@@ -110,7 +113,8 @@
         {!! $errors->first('celular','<span class=error>:message</span>')!!}
 </div>
 
-
+</div>
+<div class="row">
 <div class="form-group col-md-12">
     <label for="estado" class="form-control-label">estado</label>
     
@@ -120,11 +124,12 @@
 
         {!! $errors->first('estado','<span class=error>:message</span>')!!}
 </div>
+</div>
 
-
+<div class="row">
 <div class="form-group col-md-3">
     <label for="name" class="form-control-label">Nombre Usuario</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" name="name" value="{{ old('name')}}">
+    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" name="name" value="{{ old('name')}}">
 
     {!! $errors->first('name','<span class=error>:message</span>')!!}
 </div>
@@ -162,6 +167,7 @@
     <input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">
 </div>
 
+</div>
 
 </form>
 </div>

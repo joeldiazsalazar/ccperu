@@ -21,4 +21,19 @@ class Teacher extends Model
     protected $hidden = [
        'remember_token',
     ];
+
+
+
+        public function user(){
+            
+            return $this->hasMany(User::class);
+        }
+
+
+       public function detail(){
+        
+        return $this->hasMany(Detail::class);
+    }
+
+
 }

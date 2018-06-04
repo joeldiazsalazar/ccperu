@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidateAttorneyRequest;
 use App\Attorney;
 use App\User;
 use App\Student;
@@ -23,7 +23,7 @@ class AttorneysController extends Controller
     public function index()
     {
 
-        $attorney = Attorney::all()->where('estado','activo');
+        $attorney = Attorney::where('estado','activo')->paginate(10);
         return view('attorney.index',compact('attorney'));
     }
 
@@ -44,7 +44,7 @@ class AttorneysController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidateAttorneyRequest $request)
     {
         Attorney::create($request->all());
 
@@ -87,12 +87,12 @@ class AttorneysController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('attorney.student.index',compact('attorney','user'));
+        return view('attorney.student.index',compact('user'));
     }
 
       public function show_student($id)
     {
-        $attorney = Attorney::findOrFail($id);
+
         $as = Student::all()->where('attorney_id',$id);
         return view('attorney.student.show',compact('as'));
     }
@@ -119,14 +119,14 @@ class AttorneysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ValidateAttorneyRequest $request, $id)
     {
         $attorney = Attorney::findOrFail($id);
 
         $attorney->update($request->all());
 
         Alert::success('Apoderado actualizado satisfactoriamente', 'Éxito')->persistent("Close");
-        return back();
+        return redirect()->route('attorneys.index');
     }
 
     /**

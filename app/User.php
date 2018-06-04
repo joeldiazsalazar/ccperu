@@ -34,6 +34,11 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
    
 }
+    
+     public function enrollment(){
+        
+        return $this->hasMany(Enrollment::class);
+    }
 
     public function role(){
 
@@ -53,6 +58,20 @@ class User extends Authenticatable
         return $this->belongsToMany(Attorney::class, 'assigned_attorneys');
 
     }
+
+
+    public function teacher(){ // hacer una condicion si es apoderado puede ver esta seccion.
+
+        return $this->belongsToMany(Teacher::class, 'assigned_teachers');
+
+    }
+
+
+    // public function teacher(){
+
+    //     return $this->hasOne(Teacher::class);
+    // }
+
 
     public function hasRoles(array $roles){
         foreach ($roles as $role) {

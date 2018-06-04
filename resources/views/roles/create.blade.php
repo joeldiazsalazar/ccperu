@@ -44,14 +44,14 @@
 
 <div class="form-group">
     <label for="name" class="form-control-label">Nombre</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Rol" name="name" value="{{ old('name')}}">
+    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Rol" name="name" value="{{ old('name')}}">
 
     {!! $errors->first('name','<span class=error>:message</span>')!!}
 </div>
 
 <div class="form-group">
     <label for="display_name" class="form-control-label">Nombre a mostrar</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre a mostrar" name="display_name" value="{{ old('display_name')}}">
+    <input type="text" class="form-control" id="display_name" aria-describedby="emailHelp" placeholder="Nombre a mostrar" name="display_name" value="{{ old('display_name')}}">
 
     {!! $errors->first('display_name','<span class=error>:message</span>')!!}
 </div>
@@ -59,7 +59,7 @@
  
 <div class="form-group">
     <label for="description" class="form-control-label">Description</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Description"  name="description" value="{{ old('description')}}">
+        <input type="text" class="form-control" id="description" placeholder="Description"  name="description" value="{{ old('description')}}">
 
         {!! $errors->first('description','<span class=error>:message</span>')!!}
 </div>

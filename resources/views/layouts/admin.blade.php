@@ -12,8 +12,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
      <!-- Favicon icon -->
 
-     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" type="image/x-icon">
-     <link rel="icon" href="{{ asset('assets/images/favicon.ico')}}" type="image/x-icon">
+    
 
       <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css')}}">
 
@@ -51,10 +50,13 @@
 
      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
+
+     <link href="{{ asset('css/mdtimepicker.css')}}" rel="stylesheet" type="text/css">
+
+
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css')}}">
+
  </head>
-
-
-
 
 <body class="sidebar-mini fixed">
     <div class="loader-bg"> 
@@ -297,9 +299,6 @@
                         </a>                
                     </li>
 
-             
-
-
                     <li class="nav-level">Components</li>
 
                     @if (auth()->check())
@@ -314,7 +313,7 @@
                         </ul>
                     </li> 
 
-                    <li class="{{ activeMenu('users*')}} treeview"><a class="waves-effect waves-dark" href="usuarios.html" type="_blank"><i class="icon-briefcase"></i><span>Usuarios</span><i class="icon-arrow-down"></i></a>
+                    <li class="{{ activeMenu('users*')}} treeview"><a class="waves-effect waves-dark" href="" type="_blank"><i class="icon-briefcase"></i><span>Usuarios</span><i class="icon-arrow-down"></i></a>
 
 
                         <ul class="treeview-menu">
@@ -336,7 +335,7 @@
                      <li class=" treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Docente</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('teachers.index')  }}"><i class="icon-arrow-right"></i>Lista docentes</a></li>
-                            <li><a class="waves-effect waves-dark" href="button.html"><i class="icon-arrow-right"></i>Registrar Cursos</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('courses.index')  }}"><i class="icon-arrow-right"></i>Lista Cursos</a></li>
                           
                         </ul>
                     </li>
@@ -347,54 +346,41 @@
                           
                         </ul>
                     </li>
-                    <li class=" treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Horario</span><i class="icon-arrow-down"></i></a>
+                    <li class=" treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Trimestre</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href=""><i class="icon-arrow-right"></i>Registrar Nivel</a></li>
-                            <li><a class="waves-effect waves-dark" href="button.html"><i class="icon-arrow-right"></i>Registrar Horario</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('trimesters.index')}}"><i class="icon-arrow-right"></i>Listado Trimestre</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('qualifications.index')}}"><i class="icon-arrow-right"></i>Registrar Notas</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('assistances.index')}}"><i class="icon-arrow-right"></i>Registrar Asistencia</a></li>
                           
                         </ul>
                     </li>               
                         
                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Matricula</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar Matricula</a></li>
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Detalle Programacion</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('enrollments.index') }}"><i class="icon-arrow-right"></i> Registrar Matricula</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('programmings.index')}}"><i class="icon-arrow-right"></i> Programacion</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('details.index')}}"><i class="icon-arrow-right"></i> Detalle Programacion</a></li>
                         </ul>
                     </li>   
 
                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Pabellon</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar Pabellon</a></li>
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar Aula</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('classrooms.index') }}"><i class="icon-arrow-right"></i> Registrar Aula</a></li>
                           
                         </ul>
                     </li>   
-
-                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Pagos</span><i class="icon-arrow-down"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar TipoPago</a></li>
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar Pago</a></li>
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Registrar Recibo</a></li>
-                          
-                        </ul>
-                    </li>   
-
-                    
-
-
-                    
 
 
                     @endif
 
                      @if (auth()->user()->hasRoles(['alumno']))
 
-                    <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Alumnos</span><i class="icon-arrow-down"></i></a>
+                    <li class="{{ activeMenu('students/detail*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Alumnos</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Mis Datos</a></li>
-                            <li><a class="waves-effect waves-dark" href="button.html"><i class="icon-arrow-right"></i> Horario</a></li>
-                            <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i> Notas</a></li>
-                            <li><a class="waves-effect waves-dark" href="bootstrap-ui.html"><i class="icon-arrow-right"></i> Cursos</a></li>
+                            <li><a class="waves-effect waves-dark" href="/students/detail/show/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Mis Datos</a></li>
+                            <li><a class="waves-effect waves-dark" href="/students/detail/calendar/programming/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Horario</a></li>
+                            <li><a class="waves-effect waves-dark" href="/students/detail/course/note/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Notas</a></li>
+                            <li><a class="waves-effect waves-dark" href=""><i class="icon-arrow-right"></i> Cursos</a></li>
                           
                         </ul>
                     </li>
@@ -408,8 +394,25 @@
                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Apoderado</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Mis Datos</a></li>
-                            <li><a class="waves-effect waves-dark" href="attorneys/students/{{ auth()->id() }}"><i class="icon-arrow-right"></i> Mis hijos</a></li>
+                            <li><a class="waves-effect waves-dark" href="/attorneys/students/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Mis hijos</a></li>
                             <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i> Pagos</a></li>
+                        </ul>
+                    </li>
+
+                    @endif
+
+
+
+                     @if (auth()->user()->hasRoles(['docente']))
+
+                   
+                    
+                    <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Docente</span><i class="icon-arrow-down"></i></a>
+                        <ul class="treeview-menu">
+
+                            <li><a class="waves-effect waves-dark" href="/teacher/assistance/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Tomar Asistencia </a></li>
+                            <li><a class="waves-effect waves-dark" href="/teacher/qualification/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Registrar Notas </a></li>
+
                         </ul>
                     </li>
 
@@ -440,17 +443,57 @@
 </div>
 </div>
 
-    
-
-		
-
-        
-        
-{{-- 	<script type="text/javascript" src="https://unpkg.com/sweetalert2@7.20.3/dist/sweetalert2.all.js"></script> --}}
-
-
-
       <script src="{{asset('assets/plugins/jquery/dist/jquery.min.js')}}"></script>
+      {{-- <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script> --}}
+
+
+
+      {{--  <script type="text/javascript">
+       
+        $("#programacion").change(function(){
+
+        var valor_combo_id=$(this).val();
+
+         $.ajax({
+                url: "/refresc",
+                type: "GET", //send it through get method
+                data: { 
+                    valor_combo_id: valor_combo_id            
+                },
+        success: function(response) {
+
+
+
+            }
+          
+        // $("#resultado").html(valor_combo_id);
+
+
+         console.log(response);
+        
+           // console.log(response); //aqui haces la magia xd xD aca le pongo la tabla no?..siii ahi es la voz....
+            //yo lo puse en consola para q veas...q te rtae los  lo listo con ese  valor_combo_id y atraves de ello acceso a los campos?
+        },
+        error: function(xhr) {
+          console.log("error");
+        }
+        
+        });     
+
+
+
+   </script> --}}
+
+
+      <script src="{{ asset('js/mdtimepicker.js')}}"></script>
+<script>
+  $(document).ready(function(){
+    $('#timepicker').mdtimepicker(); //Initializes the time picker
+     $('#timepicker1').mdtimepicker(); //Initializes the time picker
+  });
+</script>
+
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
       <script type="text/javascript">
@@ -463,10 +506,32 @@
                         return rex.test($(this).text());
                     }).show();
                 })
+
             }(jQuery));
         });
       </script>   
 
+      <script type="text/javascript">
+
+        function copiar()
+        {
+            document.getElementById("vacante").value=document.getElementById("capacidad").value;
+        }
+
+        function copyuser(){
+            document.getElementById("name").value=document.getElementById("nombres").value;
+        }
+
+        function  copyteacher(){
+            
+            document.getElementById("name").value=document.getElementById("nombres").value;
+        }
+
+        function copyatt(){
+            document.getElementById("name").value=document.getElementById("nombres").value;
+        }
+
+      </script>
       
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
@@ -560,8 +625,7 @@
       <!-- Required Fremwork -->
       <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 
-
-        
+     
       <!-- waves effects.js -->
       <script src="{{asset('assets/plugins/Waves/waves.min.js')}}"></script>
 
@@ -574,17 +638,6 @@
 
       <!-- notification -->
       <script src="{{asset('assets/plugins/notification/js/bootstrap-growl.min.js')}}"></script>
-
-      <!-- Rickshaw Chart js -->
-     {{--  <script src="{{asset('assets/plugins/d3/d3.js')}}"></script>
-      <script src="{{asset('assets/plugins/rickshaw/rickshaw.js')}}"></script>
-
-      <! Sparkline charts >
-      <script src="{{asset('assets/plugins/jquery-sparkline/dist/jquery.sparkline.js')}}"></script>
- --}}
-      <!-- Counter js  -->
-
-            <!-- Multi Select js -->
 
       <script src="{{asset('assets/plugins/waypoints/jquery.waypoints.min.js')}}"></script>
       <script src="{{asset('assets/plugins/countdown/js/jquery.counterup.js')}}"></script>
@@ -599,11 +652,6 @@
         
         'use strict';
 
-// function removeloader(){
-//     $('.loader-bg').fadeOut('slow', function() {
-//         $('.loader-bg').remove();
-//     });
-// };
     $(document).ready(function() {
 
     //sidebar dropdown open
@@ -955,7 +1003,9 @@ $(document).ready(function() {
 
 
 
+
   
+
 
 
 </body>

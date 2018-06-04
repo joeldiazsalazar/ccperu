@@ -99,6 +99,9 @@
 
 </tr>
 	@endforeach
+
+
+	{{ $attorney->links('vendor.pagination.bootstrap-4') }}
 </tbody>
 </table>
 
