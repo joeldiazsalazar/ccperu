@@ -27,7 +27,7 @@
                         <div class="card">
                             <div class="card-header"><h5 class="card-header-text">Registro de Usuarios</h5>
                                 <div class="f-right">
-                                	
+                                	<a href="{{ route('users.create')}}" class="btn btn-info">Agregar Usuario</a>
                                     <a href="" data-toggle="modal" data-target="#input-type-Modal"><i class="icofont icofont-code-alt"></i></a>
 
 
@@ -37,9 +37,22 @@
                             </div>
 
 <div class="card-block">
-{{--  <div class="input-group"> <span class="input-group-addon">Buscar</span>
-        <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el alumno que deseas Buscar...">
-      </div> --}}
+
+	<div class="container">
+
+       	 {!! Form::open(['route' => 'users.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
+<div class="container">
+
+	
 <table class="table table-hover">
 	
 
@@ -68,28 +81,28 @@
 
 		@foreach($user->student as $students)
 
-		<a href="/students/show/{{ $students->id }}">
+		{{-- <a href="/students/show/{{ $students->id }}"> --}}
 
-			{{ $students->dni }}
+			{{ $students->email }}
 
-		</a>
+		{{-- </a> --}}
 		
 		@endforeach
 
 		@foreach($user->attorney as $attorneys)
-		<a href="/attorneys/show/{{ $attorneys->id }}">
+		{{-- <a href="/attorneys/show/{{ $attorneys->id }}"> --}}
 
-			{{ $attorneys->dni }}
+			{{ $attorneys->nombres }}
 
-		</a>
+		{{-- </a> --}}
 		@endforeach
 	
 		@foreach($user->teacher as $teachers)
-		<a href="/teachers/show/{{ $teachers->id }}">
+		{{-- <a href="/teachers/show/{{ $teachers->id }}"> --}}
 
 			{{ $teachers->correo }}
-
-		</a>
+{{-- 
+		</a> --}}
 		@endforeach
 
 		
@@ -111,12 +124,16 @@
 </tr>
 	@endforeach
 
-	{{ $users->links('vendor.pagination.bootstrap-4') }}
+	
 
 
 </tbody>
 </table>
 
+
+{{ $users->links('vendor.pagination.bootstrap-4') }}
+
+</div>
 </div>
 
 </div>

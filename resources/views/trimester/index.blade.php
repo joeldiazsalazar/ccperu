@@ -62,14 +62,14 @@
 				<a class="btn btn-info btn-xs" href="{{ route('trimesters.edit', $trimesters->id) }}">Editar</a>
 
 
-				<form  id="deleteedition" style="display: inline;" method="POST" action=" {{ route('trimesters.destroy', $trimesters->id) }}">
+		{{-- 		<form  id="deleteedition" style="display: inline;" method="POST" action=" {{ route('trimesters.destroy', $trimesters->id) }}">
 
 					{!! csrf_field() !!}
 					{!! method_field('DELETE') !!}
 					
 					<button class="btn btn-danger btn-xs delete-edition-btn" type="submit">Eliminar</button>
 
-				</form>
+				</form> --}}
 	</td>
 
 </tr>

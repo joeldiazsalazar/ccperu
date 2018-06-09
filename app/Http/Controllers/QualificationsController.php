@@ -42,10 +42,23 @@ class QualificationsController extends Controller
    }
 
   
-    public function index()
+    public function index(Request $request)
     {
-        $qualification = Qualification::all();
-        return view('qualification.index',compact('qualification'));
+        if ($request->search == "") {
+
+           $qualification = Qualification::paginate(5);
+           return view('qualification.index',compact('qualification'));
+        }else{
+            $qualification = Qualification::whereHas('user', function ($query) use ($request) {
+                
+                $query->where(\DB::raw("CONCAT(name, ' ', username)"),'LIKE','%' . $request->search . '%');
+
+            })->paginate(3);
+
+                                
+            $qualification->appends($request->only('search'));
+            return view('qualification.index',compact('qualification'));
+        }
     }
 
     /**
@@ -180,7 +193,7 @@ class QualificationsController extends Controller
 
         Alert::success('Calificacion actualizado satisfactoriamente', 'Éxito')->persistent("Close");
         
-        return back();
+         return redirect()->route('qualifications.index');
     }
 
     /**

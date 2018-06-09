@@ -8,17 +8,26 @@ use Alert;
 
 class ClassroomsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+         public function __construct()
     {
+        $this->middleware('auth');
 
-        $classroom = Classroom::all();
+        $this->middleware('roles:admin',['except' => ['edit','update','destroy','create','index','store']]);
+    }
 
-        return view('classroom.index',compact('classroom'));
+  public function index(Request $request)
+    {   
+
+
+        if ($request->search == "") {
+           $classroom = Classroom::paginate(5);
+           return view('classroom.index',compact('classroom'));
+        }else{
+            $classroom = Classroom::where(\DB::raw("CONCAT(nombre, ' ', pabellon)"),'LIKE','%' . $request->search . '%')
+                                ->paginate(3);
+            $classroom->appends($request->only('search'));
+            return view('classroom.index',compact('classroom'));
+        }
 
     }
 
@@ -99,7 +108,7 @@ class ClassroomsController extends Controller
         $classroom->update($request->all());
 
         Alert::success('Aula actualizado satisfactoriamente', 'Éxito')->persistent("Close");
-        return back();
+         return redirect()->route('classrooms.index'); 
 
     }
 

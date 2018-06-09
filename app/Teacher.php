@@ -35,5 +35,10 @@ class Teacher extends Model
         return $this->hasMany(Detail::class);
     }
 
+    public function assistance(){
+        
+        return $this->hasMany(Assistance::class);
+    }
+
 
 }

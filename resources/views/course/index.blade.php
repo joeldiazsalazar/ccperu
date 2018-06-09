@@ -38,6 +38,18 @@
 
 <div class="card-block">
 
+	<div class="container">
+
+       	 {!! Form::open(['route' => 'courses.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 
 	<table class="table table-hover">
 	
@@ -81,10 +93,10 @@
 </tr>
 	@endforeach
 
-	{{ $course->links('vendor.pagination.bootstrap-4') }}
+	
 </tbody>
 </table>
-
+{{ $course->links('vendor.pagination.bootstrap-4') }}
 
 </div>
 

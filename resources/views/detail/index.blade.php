@@ -25,7 +25,7 @@
                     <!-- Form Control starts -->
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><h5 class="card-header-text">Registro de Aulas</h5>
+                            <div class="card-header"><h5 class="card-header-text">Programacion - Detalle</h5>
                                 <div class="f-right">
                                 	<a href="{{ route('details.create')}}" class="btn btn-info">Agregar detalle Programacion</a>
                                     <a href="" data-toggle="modal" data-target="#input-type-Modal"><i class="icofont icofont-code-alt"></i></a>
@@ -38,7 +38,18 @@
 
 <div class="card-block">
 
+	<div class="container">
 
+       	 {!! Form::open(['route' => 'details.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 	<table class="table table-hover">
 	
 
@@ -60,11 +71,11 @@
 <tr>
 	<td>{{ $details->id }}</td>
 
-	<td>{{ $details->programming_id }}</td>
+	<td>{{ $details->programming->nivel.'-'.$details->programming->grado.'-'.$details->programming->classroom->pabellon  }}</td>
 
-	<td>{{ $details->teacher_id }}</td>
+	<td>{{ $details->teacher->nombres }}</td>
 
-	<td>{{ $details->course_id}}</td>
+	<td>{{ $details->course->name}}</td>
 
 	<td>{{ $details->hour_start}}</td>
 
@@ -90,7 +101,7 @@
 	@endforeach
 </tbody>
 </table>
-
+{{ $detail->links('vendor.pagination.bootstrap-4') }}
 
 </div>
 

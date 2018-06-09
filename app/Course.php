@@ -36,4 +36,10 @@ class Course extends Model
         
         return $this->hasMany(Qualification::class);
     }
+
+    public function assistance(){
+        
+        return $this->hasMany(Assistance::class);
+    }
+    
 }

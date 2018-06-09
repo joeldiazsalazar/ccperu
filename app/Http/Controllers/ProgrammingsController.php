@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Programming;
 use App\Classroom;
+
+
 use Alert;
 
 class ProgrammingsController extends Controller
@@ -15,12 +17,23 @@ class ProgrammingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $programming = Programming::all();
+        if ($request->search == "") {
 
-        return view('programming.index',compact('programming'));
+           $programming = Programming::where('estado','activo')->paginate(5);
+           return view('programming.index',compact('programming'));
+        }else{
+            $programming = Programming::where(\DB::raw("CONCAT(nivel, ' ', grado , ' ', turno)"),'LIKE','%' . $request->search . '%')->orWhereHas('classroom', function ($query) use ($request) {
+                
+                $query->where('nombre','LIKE','%' . $request->search . '%');
+
+            })->paginate(3);
+
+                                
+            $programming->appends($request->only('search'));
+            return view('programming.index',compact('programming'));
+        }
     }
 
     /**
@@ -79,7 +92,11 @@ class ProgrammingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programming = Programming::findOrFail($id);
+
+       $classroom = Classroom::all();
+
+       return view('programming.edit', compact('programming','classroom'));
     }
 
     /**
@@ -91,7 +108,13 @@ class ProgrammingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $programmings = Programming::findOrFail($id);
+
+        $programmings->update($request->all());
+        
+        Alert::success('Programacion actualizado satisfactoriamente', 'Success')->persistent("Close");
+
+        return redirect()->route('programmings.index');  
     }
 
     /**
@@ -102,6 +125,12 @@ class ProgrammingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $programmings = Programming::findOrFail($id);
+        $programmings->estado='inactivo';
+        $programmings->update();
+        //redireccionar
+        Alert::success('Programacion eliminado satisfactoriamente', 'Éxito')->persistent("Close");
+
+        return back();
     }
 }

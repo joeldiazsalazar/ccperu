@@ -20,11 +20,19 @@ class AttorneysController extends Controller
        
     }
 
-    public function index()
+    public function index(Request $request)
     {
 
-        $attorney = Attorney::where('estado','activo')->paginate(10);
-        return view('attorney.index',compact('attorney'));
+        if ($request->search == "") {
+           $attorney = Attorney::where('estado','activo')->paginate(5);
+           return view('attorney.index',compact('attorney'));
+        }else{
+            $attorney = Attorney::where(\DB::raw("CONCAT(nombres, ' ', apellidoPaterno , ' ', apellidoMaterno)"),'LIKE','%' . $request->search . '%')
+                                ->where('estado','activo')
+                                ->paginate(3);
+            $attorney->appends($request->only('search'));
+            return view('attorney.index',compact('attorney'));
+        }
     }
 
     /**

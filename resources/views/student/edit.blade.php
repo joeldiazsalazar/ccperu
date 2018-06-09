@@ -160,14 +160,23 @@
 
 
 <div class="form-group col-md-4">
-    <label for="exampleSelect1" class="form-control-label">Apoderado</label>
-        <select class="form-control" id="exampleSelect1" name="attorney_id"">
-           @foreach ($attorneys as $attorney)
-            <option  value="{{ $attorney->id }}">  {{ $attorney->nombres }} </option>
+    <label for="attorney_id" class="form-control-label">Apoderado</label>
+        <select class="form-control" id="edit-asig" name="attorney_id">
+           
+            <option value="">Seleccione Estudiante</option>
+                     @foreach ($attorney as $getida)
+
+                    <option value="{{ $getida->id }}"
+
+                    {{ $students->attorney_id == $getida->id ? 'selected="selected"' : '' }}>
+
+                    {{ $getida->nombres }}
+                    </option>
+         
             @endforeach
         </select>
 
-        {!! $errors->first('role_id','<span class=error>:message</span>')!!}
+        {!! $errors->first('attorney_id','<span class=error>:message</span>')!!}
 </div>
 
 

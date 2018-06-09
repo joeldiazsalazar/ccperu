@@ -14,10 +14,16 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $course = Course::orderBy('name')->paginate(5);
-        return view('course.index',compact('course'));
+            if ($request->search == "") {
+           $course = Course::paginate(5);
+           return view('course.index', compact('course'));
+        }else{
+            $course = Course::where('name','LIKE','%' . $request->search . '%')->paginate(3);
+            $course->appends($request->only('search'));
+            return view('course.index', compact('course'));
+        }
 
     }
 

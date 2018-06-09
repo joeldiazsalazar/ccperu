@@ -77,9 +77,7 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#messages1" role="tab">Asignacion Docentes</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#settings1" role="tab">Asignacion Administrador</a>
-    </li>
+ 
 </ul>
 
 <div class="tab-content tabs">
@@ -154,9 +152,7 @@
 
 
     </div>
-    <div class="tab-pane" id="settings1" role="tabpanel">
-        <p>4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
-    </div>
+  
 </div>
 
 </div>

@@ -31,7 +31,7 @@
 <div class="card-block">
 
 
-<form method="POST" action=" {{ route('teachers.sendQualification')}} ">
+<form method="POST" action=" {{ route('teachers.sendQualification')}} " onsubmit="return checkSubmit();">
 	{!! csrf_field() !!}
 	<table class="table">
 		<h4>Descripcion</h4>
@@ -75,11 +75,11 @@
 
 			<tr>
 			<td>ALUMNO</td>
-			<td class="">Notas 1</td>
+			<td class="">Nota 1</td>
             <td class="">Notas 2</td>
             <td class="">Notas 3</td>
             <td class="">Notas 4</td>
-            <td class="">promedio</td> 
+            <td class="">Promedio</td> 
 
 			</tr>
 		</tr>
@@ -88,26 +88,23 @@
 
 	<tbody>
 
-
-		
+    
+	    	
 		@foreach($ddNote as $pro)
 			
 		<tr>
 
-
-
 			@foreach($pro->programming->enrollment as $wtf)
 			<tr class="row">
 			<td> 
-				<input type="checkbox" name="enrollment_id[]" checked value="{{ $wtf->id }}">{{ $wtf->user->name }}
+				<input type="checkbox" name="user_id[]" checked value="{{ $wtf->user_id }}">{{ $wtf->user->name }}
 			</td>
-
-			<td> <input type="number" name="nota1"  style="width: 50px; text-align: center;"></td>
-             <td class=""> <input type="number" name="nota2"  style="width: 50px; text-align: center;"></td>
-             <td class=""> <input type="number" name="nota3"  style="width: 50px; text-align: center;"></td>
-             <td class=""> <input type="number" name="nota4"  style="width: 50px; text-align: center;"></td>
-             <td class=""> <input type="number" name="promedio"  style="width: 50px; text-align: center;"></td>
-
+			 <td><input type="text" name="nota1[{{$not1++}}]"  id="note1_{{$id1++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met1++}});" maxlength="2" ></td>
+             <td> <input type="text" name="nota2[{{$not2++}}]"  id="note2_{{$id2++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met2++}})" maxlength="2"></td>
+             <td> <input type="text" name="nota3[{{$not3++}}]"  id="note3_{{$id3++}}"  style="width: 70px; text-align: center;"  onkeyup="calcular({{$met3++}})" maxlength="2"></td>
+             <td> <input type="text" name="nota4[{{$not4++}}]"  id="note4_{{$id4++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met4++}})" maxlength="2"></td>
+             <td> <input type="text" name="promedio[{{$prom++}}]"  id="prom_{{$id5++}}"  style="width: 70px; text-align: center;" ></td>
+         
 			</tr>
 			@endforeach
 			
@@ -117,7 +114,7 @@
 	</tbody>
 </table>
 
-<input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">
+<input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar" id="btn_note">
 
 </form>
 

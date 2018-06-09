@@ -40,9 +40,18 @@
 
 <div class="card-block">
 
- <div class="input-group"> <span class="input-group-addon">Buscar</span>
-        <input id="filtrar" type="text" class="form-control" placeholder="Ingresa el alumno que deseas Buscar...">
- </div>
+<div class="container">
+
+       	 {!! Form::open(['route' => 'attorneys.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 
 <table class="table table-hover">
 	
@@ -101,10 +110,10 @@
 	@endforeach
 
 
-	{{ $attorney->links('vendor.pagination.bootstrap-4') }}
+	
 </tbody>
 </table>
-
+{{ $attorney->links('vendor.pagination.bootstrap-4') }}
 </div>
 
 </div>

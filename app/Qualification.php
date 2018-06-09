@@ -10,7 +10,7 @@ class Qualification extends Model
 
 
     protected $fillable = [
-        'trimester_id','nota1','nota2','nota3','nota4','promedio','course_id','enrollment_id','teacher_id','programming_id'
+        'trimester_id','nota1','nota2','nota3','nota4','promedio','course_id','user_id','teacher_id','programming_id'
     ];
 
     /**
@@ -32,8 +32,8 @@ class Qualification extends Model
     	return $this->belongsTo(Course::class);
     }
 
-    public function enrollment(){
+    public function user(){
         
-        return $this->belongsTo(Enrollment::class);
+        return $this->belongsTo(User::class);
     }
 }

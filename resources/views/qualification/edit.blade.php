@@ -38,7 +38,7 @@
                             </div>
 
 <div class="card-block">
-<form method="POST" action=" {{ route('qualifications.update', $qualification->id)}} ">
+<form method="POST" action=" {{ route('qualifications.update', $qualification->id)}} " id="update">
 
     {!! method_field('PUT') !!}
     
@@ -94,24 +94,26 @@
             
             <td class=""> 
 
-             <input type="checkbox" name="enrollment_id" value="{{ $qualification->enrollment_id }}">{{ $qualification->enrollment_id }}   
+             <input type="checkbox" name="user_id" checked="" value="{{ $qualification->user_id }}">{{ $qualification->user->name }}   
                <!-- <input type="text" name="enrollment_id" >-->
 
             </td>
-
-            <td > <input type="text" name="nota1" value="{{ $qualification->nota1}}"></td>
-            <td > <input type="text" name="nota2" value="{{ $qualification->nota2}}"></td>
-            <td > <input type="text" name="nota3" value="{{ $qualification->nota3}}"></td>
-            <td > <input type="text" name="nota4" value="{{ $qualification->nota4}}"></td>
-            <td > <input type="text" name="promedio" value="{{ $qualification->promedio}}"></td>
-           
+         
+            <td><input type="text" name="nota1"  id="n1" value="{{ $qualification->nota1}}" onkeyup="calcularUpdate();" 
+            style="width: 40px; text-align: center;" /></td>
+            <td><input type="text" name="nota2"  id="n2" value="{{ $qualification->nota2}}" onkeyup="calcularUpdate();" style="width: 40px; text-align: center;" /></td>
+            <td><input type="text" name="nota3"  id="n3" value="{{ $qualification->nota3}}" onkeyup="calcularUpdate();" style="width: 40px; text-align: center;" /></td>
+            <td><input type="text" name="nota4"  id="n4" value="{{ $qualification->nota4}}" onkeyup="calcularUpdate();" style="width: 40px; text-align: center;" /></td>
+            <td > <input type="text" name="promedio" id="total"  value="{{ $qualification->promedio}}" style="width: 40px; text-align: center;" /></td>
+         
 
         </tr>
-
+        
  
     </tbody>
 
 </table>
+
 
  
 <input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">

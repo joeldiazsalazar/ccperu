@@ -17,10 +17,23 @@ class AssistancesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {   
-        $assistance = Assistance::all();
-        return view('assistance.index',compact('assistance'));
+        if ($request->search == "") {
+
+           $assistance = Assistance::paginate(5);
+           return view('assistance.index',compact('assistance'));
+        }else{
+            $assistance = Assistance::whereHas('user', function ($query) use ($request) {
+                
+                $query->where('name','LIKE','%' . $request->search . '%');
+
+            })->paginate(3);
+
+                                
+            $assistance->appends($request->only('search'));
+            return view('assistance.index',compact('assistance'));
+        }
     }
 
     /**

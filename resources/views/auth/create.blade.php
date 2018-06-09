@@ -15,13 +15,12 @@
                 <div class="row">
                     <div class="col-sm-12 p-0">
                         <div class="main-header">
-                            <h4>General Elements</h4>
+                            <h4>Control de Usuarios</h4>
                             <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
-                                <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-home"></i></a>
+                                <li class="breadcrumb-item"><a href="{{ route('cpanel')}}"><i class="icofont icofont-home"></i></a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="#">Forms</a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="general-elements-bootstrap.html">General Elements</a>
+                             
+                                <li class="breadcrumb-item"><a href="{{ route('users.create') }}">Agregar Usuario</a>
                                 </li>
                             </ol>
                         </div>
@@ -31,7 +30,7 @@
                     <!-- Form Control starts -->
                     <div class="col-lg-6">
                         <div class="card">
-                            <div class="card-header"><h5 class="card-header-text">Input Types</h5>
+                            <div class="card-header"><h5 class="card-header-text">Control de usuarios</h5>
                                 <div class="f-right">
                                     <a href="" data-toggle="modal" data-target="#input-type-Modal"><i class="icofont icofont-code-alt"></i></a>
                                 </div>
@@ -44,7 +43,7 @@
     {!! csrf_field() !!}
 
 <div class="form-group">
-    <label for="exampleInputEmail1" class="form-control-label">Nombre</label>
+    <label for="exampleInputEmail1" class="form-control-label">Nombre Completo</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" name="name" value="{{ old('name')}}">
 
     {!! $errors->first('name','<span class=error>:message</span>')!!}
@@ -68,7 +67,7 @@
 
  
 <div class="form-group">
-    <label for="exampleSelect1" class="form-control-label">Example select</label>
+    <label for="exampleSelect1" class="form-control-label">Rol</label>
         <select class="form-control" id="exampleSelect1" name="role_id"">
            @foreach ($roles as $rol)
             <option  value="{{ $rol->id }}">  {{ $rol->display_name }} </option>

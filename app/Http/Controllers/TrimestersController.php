@@ -67,7 +67,8 @@ class TrimestersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $trimester = Trimester::findOrFail($id);
+        return view('trimester.edit', compact('trimester'));
     }
 
     /**
@@ -79,7 +80,13 @@ class TrimestersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $trimester = Trimester::findOrFail($id);
+
+        $trimester->update($request->all());
+        
+        Alert::success('Trimestre actualizada satisfactoriamente', 'Success')->persistent("Close");
+
+        return redirect()->route('trimesters.index');  
     }
 
     /**

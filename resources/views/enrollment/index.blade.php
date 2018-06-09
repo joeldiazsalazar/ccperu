@@ -38,7 +38,18 @@
 
 <div class="card-block">
 
+<div class="container">
 
+       	 {!! Form::open(['route' => 'enrollments.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 	<table class="table table-hover">
 	
 
@@ -46,7 +57,7 @@
 	<tr>
 	<th>ID</th>
 	<th>Nombre</th>
-	<th>User</th>
+	<th>Codigo</th>
 	<th>Monto</th>
 	<th>Estado</th>
 	<th>Nivel</th>
@@ -60,7 +71,6 @@
 	<td>{{ $enrollments->id }}</td>
 
 	<td>
-
 		{{ $enrollments->student->nombres }}</td>
 
 	<td>{{ $enrollments->user->username }}</td>
@@ -75,12 +85,12 @@
 				<a class="btn btn-info btn-xs" href="{{ route('enrollments.edit', $enrollments->id) }}">Editar</a>
 
 
-				<form  id="deleteedition" style="display: inline;" method="POST" action=" {{ route('enrollments.destroy', $enrollments->id) }}">
+				<form  class="deleteenrollment" style="display: inline;" method="POST" action=" {{ route('enrollments.destroy', $enrollments->id) }}">
 
 					{!! csrf_field() !!}
 					{!! method_field('DELETE') !!}
 					
-					<button class="btn btn-danger btn-xs delete-edition-btn" type="submit">Eliminar</button>
+					<button class="btn btn-danger btn-xs " type="submit">Eliminar</button>
 
 				</form>
 	</td>
@@ -89,7 +99,7 @@
 	@endforeach
 </tbody>
 </table>
-
+{{ $enrollment->links('vendor.pagination.bootstrap-4') }}
 
 </div>
 

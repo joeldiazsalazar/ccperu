@@ -13,6 +13,7 @@ use App\Programming;
 use App\Detail;
 use App\Qualification;
 use App\Course;
+use App\Assistance;
 
 use Alert;
 
@@ -20,13 +21,22 @@ class StudentsController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
 
 
-        $students = Student::where('estado','activo')->paginate(10);
+        if ($request->search == "") {
+           $students = Student::where('estado','activo')->paginate(5);
+           return view('student.index',compact('students'));
+        }else{
+            $students = Student::where(\DB::raw("CONCAT(nombres, ' ', apellidoPaterno , ' ', apellidoMaterno)"),'LIKE','%' . $request->search . '%')
+                                ->where('estado','activo')
+                                ->paginate(3);
+            $students->appends($request->only('search'));
+            return view('student.index',compact('students'));
+        }
 
-        return view('student.index',compact('students'));
+        
     }
 
     /**
@@ -83,9 +93,9 @@ class StudentsController extends Controller
     {
         $students = Student::findOrFail($id);
 
-        $attorneys = Attorney::all();
+        $attorney = Attorney::all();
 
-        return view('student.edit',compact('students','attorneys'));
+        return view('student.edit',compact('students','attorney'));
     }
 
     /**
@@ -161,15 +171,15 @@ class StudentsController extends Controller
               $then = $enrollment->programming->id;
          }
          
-         $detalles = Detail::all()->where('programming_id', $then)->where('day','lunes');
+         $detalles = Detail::all()->where('programming_id', $then)->where('day','lunes')->sortByDesc('hour_start');
 
-         $det_mart = Detail::all()->where('programming_id', $then)->where('day','martes');
+         $det_mart = Detail::all()->where('programming_id', $then)->where('day','martes')->sortByDesc('hour_start');
 
-         $det_mier = Detail::all()->where('programming_id', $then)->where('day','miercoles');
+         $det_mier = Detail::all()->where('programming_id', $then)->where('day','miercoles')->sortByDesc('hour_start');
 
-         $det_juev = Detail::all()->where('programming_id', $then)->where('day','jueves');
+         $det_juev = Detail::all()->where('programming_id', $then)->where('day','jueves')->sortByDesc('hour_start');
 
-         $det_vier = Detail::all()->where('programming_id', $then)->where('day','viernes');
+         $det_vier = Detail::all()->where('programming_id', $then)->where('day','viernes')->sortByDesc('hour_start');
 
         return view('student.detail.detail',compact('as','detalles','det_mart','det_mier','det_juev','det_vier'));
     }
@@ -178,40 +188,29 @@ class StudentsController extends Controller
     {
 
 
-        $as = Enrollment::all()->where('user_id',$id);
+        // $as = Enrollment::all()->where('user_id',$id);
 
 
 
-         foreach ($as as $enrollment) {
+        //  foreach ($as as $enrollment) {
              
-              $then = $enrollment->id;
+        //       $then = $enrollment->id;
             
-         }
-
-         // foreach ($as as $key) {
-         //     $var = $key->programming->id;
-             
-         // }
-
-         // $deta = Detail::all()->where('programming_id', $var );
-
-
-         // foreach ($deta as $det) {
-         //     $mos  = $det->course->id;
-         // }
-
-         // dd($mos);
-         // $course = Course::all();
-
-         // foreach ($course as $key) {
-         //    $x[] = $key->id;
-         // }
-            
+        //  }
 
          
-        $qualification = Qualification::all()->where('enrollment_id', $then)->where('trimester_id', '1')->sortBy("course_id");
+        $qualification = Qualification::all()->where('user_id', $id)->where('trimester_id', '1')->sortBy("course_id");
 
         return view('student.detail.prog',compact('qualification'));
     }
 
+
+    public function assistance($id){
+
+        $assistance = Assistance::all()->where('user_id',$id);
+
+        return view('student.detail.record',compact('assistance'));
+
+        
+    }
 }

@@ -45,51 +45,21 @@
 
 
 
-<form method="POST" action=" {{ route('classrooms.update', $classroom->id)}} ">
+<form method="POST" action=" {{ route('trimesters.update', $trimester->id)}} ">
 	{!! method_field('PUT') !!}
 
 	{!! csrf_field() !!}
 
 <div class="form-group col-md-4">
-<label for="nombre" class="form-control-label">Nombre Completo</label>
-	Nombre
+<label for="name" class="form-control-label">Trimestre</label>
 
-	<input class="form-control" type="text" name="nombre" value="{{ $classroom->nombre }}">
 
-	{!! $errors->first('nombre','<span class=error>:message</span>')!!}
-</label>
+	<input class="form-control" type="text" name="name" value="{{ $trimester->name }}">
+
+	{!! $errors->first('name','<span class=error>:message</span>')!!}
+
 
 </div>
-
-<div class="form-group col-md-4">
-<label for="capacidad" class="form-control-label"> capacidad </label>
-	
-	<input class="form-control" type="text" name="capacidad" value="{{ $classroom->capacidad}}">
-
-	{!! $errors->first('capacidad','<span class=error>:message</span>')!!}
-</div>
-
-
-<div class="form-group col-md-4">
-
-<label for="vacante" class="form-control-label">
-	vacante</label>
-	<input class="form-control" type="text" name="vacante" value="{{ $classroom->vacante}}">
-
-	{!! $errors->first('vacante','<span class=error>:message</span>')!!}
-
-</div>
-
-<div class="form-group col-md-4">
-
-<label for="pabellon" class="form-control-label">
-    pabellon</label>
-    <input class="form-control" type="text" name="pabellon" value="{{ $classroom->pabellon}}">
-
-    {!! $errors->first('pabellon','<span class=error>:message</span>')!!}
-
-</div>
-
 
 <div class="form-group col-md-12">
 	

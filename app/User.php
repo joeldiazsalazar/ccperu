@@ -67,6 +67,17 @@ class User extends Authenticatable
     }
 
 
+    public function assistance(){
+      
+      return $this->hasMany(Assistance::class);
+    }
+
+     public function qualification(){
+      
+      return $this->hasMany(Qualification::class);
+    }
+
+
     // public function teacher(){
 
     //     return $this->hasOne(Teacher::class);
@@ -86,5 +97,17 @@ class User extends Authenticatable
 
     public function isAdmin(){
         return $this->hasRoles(['admin']);
+    }
+
+
+
+
+
+    public function scopeName($query, $name){
+        if ( trim($name) != "") {
+          $query->where('name',"LIKE","%$name%");
+        }
+        
+
     }
 }

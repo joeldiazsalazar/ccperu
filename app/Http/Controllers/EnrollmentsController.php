@@ -14,16 +14,29 @@ use App\Classroom;
 
 class EnrollmentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+      public function __construct()
     {
-        $enrollment = Enrollment::all();
+        $this->middleware('auth');
 
-        return view('enrollment.index',compact('enrollment'));
+        $this->middleware('roles:admin',['except' => ['edit','update','destroy','create','index','store','show']]);
+    }
+
+    public function index(Request $request)
+    {
+        if ($request->search == "") {
+
+           $enrollment = Enrollment::where('estado','activo')->paginate(5);
+           return view('enrollment.index',compact('enrollment'));
+        }else{
+            $enrollment = Enrollment::whereHas('user', function ($query) use ($request) {
+                
+                $query->where('username','LIKE','%' . $request->search . '%');
+
+            })->paginate(3);
+                                
+            $enrollment->appends($request->only('search'));
+            return view('enrollment.index',compact('enrollment'));
+        }
 
 
     }
@@ -358,7 +371,15 @@ class EnrollmentsController extends Controller
      */
     public function edit($id)
     {
-        //
+       $enrollment = Enrollment::findOrFail($id);
+
+       $programming = Programming::all();
+
+       $user = User::where('role_id','2')->pluck('username','id');
+
+       $students = Student::pluck('nombres','id');
+
+       return view('enrollment.edit', compact('enrollment','programming','user','students'));
     }
 
     /**
@@ -370,7 +391,13 @@ class EnrollmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $enrollment = Enrollment::findOrFail($id);
+
+        $enrollment->update($request->all());
+        
+        Alert::success('Matricula actualizada satisfactoriamente', 'Success')->persistent("Close");
+
+        return redirect()->route('enrollments.index');  
     }
 
     /**
@@ -381,6 +408,12 @@ class EnrollmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $enrollment = Enrollment::findOrFail($id);
+        $enrollment->estado='pendiente';
+        $enrollment->update();
+        //redireccionar
+        Alert::success('Matricula eliminado satisfactoriamente', 'Éxito')->persistent("Close");
+
+       return redirect()->route('enrollments.index');  
     }
 }

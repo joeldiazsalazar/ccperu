@@ -26,11 +26,20 @@ class TeachersController extends Controller
         $this->middleware('roles:admin,docente',['except' => ['edit','update','destroy','create','index','store']]);
     }
 
-    public function index()
-    {
+    public function index(Request $request)
+    {   
 
-        $teacher = Teacher::where('estado','activo')->paginate(5);  
-        return view('teacher.index',compact('teacher'));
+
+        if ($request->search == "") {
+           $teacher = Teacher::where('estado','activo')->paginate(5);
+           return view('teacher.index',compact('teacher'));
+        }else{
+            $teacher = Teacher::where(\DB::raw("CONCAT(nombres, ' ', apellidoPaterno , ' ', apellidoMaterno)"),'LIKE','%' . $request->search . '%')
+                                ->where('estado','activo')
+                                ->paginate(3);
+            $teacher->appends($request->only('search'));
+            return view('teacher.index',compact('teacher'));
+        }
 
     }
 
@@ -241,6 +250,25 @@ class TeachersController extends Controller
 
         $ddNote = Detail::all()->where('programming_id',$id)->where('teacher_id',$rest);
 
+        $not1=0;
+        $not2=0;
+        $not3=0;
+        $not4=0;
+        $prom=0;
+
+
+        $id1=0;
+        $id2=0;
+        $id3=0;
+        $id4=0;
+        $id5=0;
+
+        $met1=0;
+        $met2=0;
+        $met3=0;
+        $met4=0;
+        $met5=0;
+
 
         $trimester = Trimester::all()->where('id','1');
 
@@ -248,7 +276,7 @@ class TeachersController extends Controller
 
         // $registro = Enrollment::all()->where('programming_id',$id);
 
-        return view('teacher.qualification.controlCourse',compact('ddNote','trimester'));
+        return view('teacher.qualification.controlCourse',compact('ddNote','trimester','not1','not2','not3','not4','prom','id1','id2','id3','id4','id5','met1','met2','met3','met4','met5'));
 
     }
 
@@ -258,26 +286,60 @@ class TeachersController extends Controller
 
 
 
-    $bucle=$request['enrollment_id'];
+     $bucle = $request['user_id'];
+     $notas1 = $request['nota1'];
+     $notas2 = $request['nota2'];
+     $notas3 = $request['nota3'];
+     $notas4 = $request['nota4'];
+    $promedio = $request['promedio'];
+   
+  // dd($notas1);
 
+    foreach ($bucle as $i  => $value) {
 
-     foreach ($bucle as $enrollment_id) {
-             
             Qualification::create([
             'trimester_id'   => $request['trimester_id'],
-            'nota1'   => $request['nota1'],
-            'nota2'   => $request['nota2'],
-            'nota3'   => $request['nota3'],
-            'nota4'   => $request['nota4'],
-            'promedio'   => $request['promedio'],
+            'nota1'   => $request['nota1'][$i],
+            'nota2'   => $request['nota2'][$i],
+            'nota3'   => $request['nota3'][$i],
+            'nota4'   => $request['nota4'][$i],
+            'promedio'   => $request['promedio'][$i],
             'course_id'   => $request['course_id'],
             'teacher_id'   => $request['teacher_id'],
             'programming_id'   => $request['programming_id'],
-            'enrollment_id'   => $enrollment_id
+            'user_id'   => $value
          ]);
 
-          }
+
+       
+    
+    }
+
+
+
+//     for ($i=0; $i < count($request['enrollment_id']); $i++) 
+// {
+//     $products= new Qualification; 
+//     $products->trimester_id = $request['trimester_id'];      
+//     $products->nota1 = $request['nota1'][$i];
+//     $products->nota2= $request['nota2'][$i];
+//     $products->nota3= $request['nota3'][$i];
+//     $products->nota4= $request['nota4'][$i];
+//     $products->promedio= $request['promedio'][$i];
+//     $products->course_id = $request['course_id'];  
+//     $products->enrollment_id= $request['enrollment_id'][$i];
+//     $products->teacher_id = $request['teacher_id'];  
+//     $products->programming_id = $request['programming_id'];
+
+
+
+
+
+
      
+//     //$products->save();  
+// }   
+    
         Alert::success('Nota registrada')->html()->persistent("Close");
             
         return redirect()->route('cpanel');

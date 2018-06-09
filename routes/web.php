@@ -81,6 +81,21 @@
 
 		Route::put('users/{id}',['as' => 'users.update','uses' => 'UsersController@update']);
 
+
+		// Route::any( '/search',['as' => 'users.search','uses' => 'UsersController@search']);
+
+
+
+
+
+
+
+
+
+
+
+
+
 		// metodos para alumnos
 
 		Route::get('students',['as' => 'students.index','uses' => 'StudentsController@index']);
@@ -105,6 +120,7 @@
 		Route::get('students/detail/course/note/{id}',['as' => 'course_note.show','uses' => 'StudentsController@prog']);
 
 
+		Route::get('students/detail/course/assistance/{id}',['as' => 'course_assistance.show','uses' => 'StudentsController@assistance']);
 
 
 		

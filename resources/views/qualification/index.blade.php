@@ -37,15 +37,27 @@
                             </div>
 
 <div class="card-block">
+<div class="container">
 
+       	 {!! Form::open(['route' => 'qualifications.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 
 	<table class="table table-hover">
 	
 
 <thead>
 	<tr>
-	<th>ID Alumno</th>
-	<th>MAtricula</th>
+	<th>Alumno</th>
+	<th>Codigo</th>
+	<th>Trimestre</th>
 	<th>Curso</th>
 	<th>nota1</th>
 	<th>nota2</th>
@@ -60,9 +72,8 @@
 	
 	@foreach ($qualification as $qualifications)
 <tr>
-	<td>{{ $qualifications->enrollment->user->username }}</td>
-
-	
+	<td>{{ $qualifications->user->name }}</td>
+	<td>{{ $qualifications->user->username }}</td>
 
 	<td>{{ $qualifications->trimester->name }}</td>
 
@@ -82,21 +93,14 @@
 				<a class="btn btn-info btn-xs" href="{{ route('qualifications.edit', $qualifications->id) }}">Editar</a>
 
 
-				<form  id="deleteedition" style="display: inline;" method="POST" action=" {{ route('qualifications.destroy', $qualifications->id) }}">
-
-					{!! csrf_field() !!}
-					{!! method_field('DELETE') !!}
-					
-					<button class="btn btn-danger btn-xs delete-edition-btn" type="submit">Eliminar</button>
-
-				</form>
+			
 	</td>
 
 </tr>
 	@endforeach
 </tbody>
 </table>
-
+{{ $qualification->links('vendor.pagination.bootstrap-4') }}
 
 </div>
 

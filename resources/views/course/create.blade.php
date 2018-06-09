@@ -44,7 +44,7 @@
 
 <div class="form-group">
     <label for="name" class="form-control-label">Nombre</label>
-    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Course" name="name" value="{{ old('name')}}">
+    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Course" name="name" value="{{ old('name')}}" onkeypress="return soloLetras(event)">
 
     {!! $errors->first('name','<span class=error>:message</span>')!!}
 </div>

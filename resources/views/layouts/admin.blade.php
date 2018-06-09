@@ -5,14 +5,14 @@
 
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Cesar Vallejo Mendoza</title>
 
      <meta charset="utf-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
      <!-- Favicon icon -->
 
-    
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/intranet.png')}}"/>
 
       <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css')}}">
 
@@ -78,7 +78,7 @@
 
 
 
-    <a href="index.html" class="logo"><img class="img-fluid able-logo" src="{{ asset('assets/images/logo.png')}}" alt="Theme-logo"></a>
+    <a href="{{ route('cpanel')}}" class="logo">CESAR VALLEJO MENDOZA</a>
 
 
 
@@ -102,43 +102,8 @@
             <ul class="top-nav">
                 <!--Notification Menu-->
                     
-                <li class="dropdown pc-rheader-submenu message-notification search-toggle">
-                    <a href="#!" id="morphsearch-search" class="drop icon-circle txt-white">
-                        <i class="icofont icofont-search-alt-1"></i>
-                    </a>
-                </li>
-                <li class="dropdown notification-menu">
-                    <a href="#!" data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle">
-                        <i class="icon-bell"></i>
-                        <span class="badge badge-danger header-badge">9</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="not-head">You have <b class="text-primary">4</b> new notifications.</li>
-                        <li class="bell-notification">
-                            <a href="javascript:;" class="media">
-                                <span class="media-left media-icon">
-                                    <img class="img-circle" src="{{ asset('assets/images/avatar-1.png')}}" alt="User Image">
-                                </span>
-                                <div class="media-body"><span class="block">Lisa sent you a mail</span><span class="text-muted block-time">2min ago</span></div></a>
-                            </li>
-                            <li class="bell-notification">
-                                <a href="javascript:;" class="media">
-                                    <span class="media-left media-icon">
-                                        <img class="img-circle" src="{{ asset('assets/images/avatar-2.png')}}" alt="User Image">
-                                    </span>
-                                    <div class="media-body"><span class="block">Server Not Working</span><span class="text-muted block-time">20min ago</span></div></a>
-                                </li>
-                                <li class="bell-notification">
-                                    <a href="javascript:;" class="media"><span class="media-left media-icon">
-                                        <img class="img-circle" src="{{ asset('assets/images/avatar-3.png')}}" alt="User Image">
-                                    </span>
-                                    <div class="media-body"><span class="block">Transaction xyz complete</span><span class="text-muted block-time">3 hours ago</span></div></a>
-                                </li>
-                                <li class="not-footer">
-                                    <a href="#!">See all notifications.</a>
-                                </li>
-                            </ul>
-                        </li>
+              
+                
                         <!-- chat dropdown -->
                         
                         <!-- window screen -->
@@ -161,14 +126,14 @@
 
                             </a>
                             <ul class="dropdown-menu settings-menu">
-                                <li><a href="#!"><i class="icon-settings"></i> Settings</a></li>
+                              
                                 <li><a href="/users/show/{{auth()->id()}}"><i class="icon-user"></i> Mi cuenta</a></li>
                                 
-                                <li><a href="message.html"><i class="icon-envelope-open"></i> My Messages</a></li>
+                               
                                 <li class="p-0">
                                     <div class="dropdown-divider m-0"></div>
                                 </li>
-                                <li><a href="lock-screen.html"><i class="icon-lock"></i> Lock Screen</a></li>
+                               
                                 <li>
                                 	
 
@@ -176,7 +141,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                                      <i class="icon-logout"></i>
-                                            Logout
+                                            Cerrar Sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -190,53 +155,7 @@
                     </ul>
 
                     <!-- search -->
-                    <div id="morphsearch" class="morphsearch">
-                        <form class="morphsearch-form">
-
-                            <input class="morphsearch-input" type="search" placeholder="Search..."/>
-
-                            <button class="morphsearch-submit" type="submit">Search</button>
-
-                        </form>
-                        <div class="morphsearch-content">
-                            <div class="dummy-column">
-                                <h2>People</h2>
-                                <a class="dummy-media-object" href="#!">
-                                    <img class="round" src="http://0.gravatar.com/avatar/81b58502541f9445253f30497e53c280?s=50&d=identicon&r=G" alt="Sara Soueidan"/>
-                                    <h3>Sara Soueidan</h3>
-                                </a>
-
-                                <a class="dummy-media-object" href="#!">
-                                    <img class="round" src="http://1.gravatar.com/avatar/9bc7250110c667cd35c0826059b81b75?s=50&d=identicon&r=G" alt="Shaun Dona"/>
-                                    <h3>Shaun Dona</h3>
-                                </a>
-                            </div>
-                            <div class="dummy-column">
-                                <h2>Popular</h2>
-                                <a class="dummy-media-object" href="#!">
-                                    <img src="assets/images/avatar-1.png" alt="PagePreloadingEffect"/>
-                                    <h3>Page Preloading Effect</h3>
-                                </a>
-
-                                <a class="dummy-media-object" href="#!">
-                                    <img src="assets/images/avatar-1.png" alt="DraggableDualViewSlideshow"/>
-                                    <h3>Draggable Dual-View Slideshow</h3>
-                                </a>
-                            </div>
-                            <div class="dummy-column">
-                                <h2>Recent</h2>
-                                <a class="dummy-media-object" href="#!">
-                                    <img src="assets/images/avatar-1.png" alt="TooltipStylesInspiration"/>
-                                    <h3>Tooltip Styles Inspiration</h3>
-                                </a>
-                                <a class="dummy-media-object" href="#!">
-                                    <img src="assets/images/avatar-1.png" alt="NotificationStyles"/>
-                                    <h3>Notification Styles Inspiration</h3>
-                                </a>
-                            </div>
-                        </div><!-- /morphsearch-content -->
-                        <span class="morphsearch-close"><i class="icofont icofont-search-alt-1"></i></span>
-                    </div>
+                 
                     <!-- search end -->
                 </div>
             </nav>
@@ -254,25 +173,19 @@
                         @else
                         <p>{{ Auth::user()->name }}</p>
 
-                        <p class="designation">UX Designer <i class="icofont icofont-caret-down m-l-5"></i></p>
+                        <p class="designation">{{ Auth::user()->role->display_name }} <i class="icofont icofont-caret-down m-l-5"></i></p>
                     </div>
                 </div>
                 <!-- sidebar profile Menu-->
                 <ul class="nav sidebar-menu extra-profile-list">
                     <li>
-                        <a class="waves-effect waves-dark" href="profile.html">
+                        <a class="waves-effect waves-dark" href="/users/show/{{auth()->id()}}">
                             <i class="icon-user"></i>
-                            <span class="menu-text">View Profile</span>
+                            <span class="menu-text">Mi Perfil</span>
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li>
-                        <a class="waves-effect waves-dark" href="javascript:void(0)">
-                            <i class="icon-settings"></i>
-                            <span class="menu-text">Settings</span>
-                            <span class="selected"></span>
-                        </a>
-                    </li>
+              
                     <li>
                     
                             	
@@ -280,7 +193,7 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="waves-effect waves-dark">
                                                      <i class="icon-logout"></i>
-                                            Logout
+                                            Cerrar Sesion
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -295,17 +208,17 @@
                     <li class="nav-level">Navigation</li>
                     <li class=" {{ activeMenu('cpanel')}} treeview">
                         <a class="waves-effect waves-dark" href="{{ route('cpanel')}}">
-                            <i class="icon-speedometer"></i><span> Dashboard</span>
+                            <i class="icon-speedometer"></i><span> Novedades</span>
                         </a>                
                     </li>
 
-                    <li class="nav-level">Components</li>
+                    <li class="nav-level">Secciones</li>
 
                     @if (auth()->check())
 
                     @if (auth()->user()->hasRoles(['admin']))
 
-                    <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Roles</span><i class="icon-arrow-down"></i></a>
+                    <li class="{{ activeMenu('roles*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Roles</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('roles.index')}}"><i class="icon-arrow-right"></i> Lista Roles </a></li>
 
@@ -313,7 +226,7 @@
                         </ul>
                     </li> 
 
-                    <li class="{{ activeMenu('users*')}} treeview"><a class="waves-effect waves-dark" href="" type="_blank"><i class="icon-briefcase"></i><span>Usuarios</span><i class="icon-arrow-down"></i></a>
+                    <li class="{{ activeMenu('users*')}} treeview"><a class="waves-effect waves-dark" href="" type="_blank"><i class="icon-briefcase"></i><span>Seguridad</span><i class="icon-arrow-down"></i></a>
 
 
                         <ul class="treeview-menu">
@@ -321,18 +234,18 @@
                             
                             {{-- <li class="{{ activeMenu('users/create')}}"><a class="waves-effect waves-dark" href="{{ route('users.create')}}"><i class="icon-arrow-right"></i> Agregar usuario</a></li> --}}
                             <li class="{{ activeMenu('users/index')}}"><a class="waves-effect waves-dark" href="{{ route('users.index')}}"><i class="icon-arrow-right"></i> Lista Usuarios</a></li>
-                            <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i>Reporte</a></li>                          
+                           {{--  <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i>Reporte</a></li>  --}}                         
                         </ul>
                     </li>
 
-                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Alumnos</span><i class="icon-arrow-down"></i></a>
+                     <li class="{{ activeMenu('students*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Alumnos</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             
                             <li><a class="waves-effect waves-dark" href="{{ route('students.index')  }}"><i class="icon-arrow-right"></i>Lista Alumno</a></li>
                         </ul>
                     </li>
 
-                     <li class=" treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Docente</span><i class="icon-arrow-down"></i></a>
+                     <li class="{{ activeMenu('teachers*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Docente</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('teachers.index')  }}"><i class="icon-arrow-right"></i>Lista docentes</a></li>
                             <li><a class="waves-effect waves-dark" href="{{ route('courses.index')  }}"><i class="icon-arrow-right"></i>Lista Cursos</a></li>
@@ -340,13 +253,13 @@
                         </ul>
                     </li>
 
-                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Apoderado</span><i class="icon-arrow-down"></i></a>
+                     <li class="{{ activeMenu('attorneys*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Apoderado</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('attorneys.index')}}"><i class="icon-arrow-right"></i> Lista apoderados</a></li>
                           
                         </ul>
                     </li>
-                    <li class=" treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Trimestre</span><i class="icon-arrow-down"></i></a>
+                    <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Trimestre</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('trimesters.index')}}"><i class="icon-arrow-right"></i>Listado Trimestre</a></li>
                             <li><a class="waves-effect waves-dark" href="{{ route('qualifications.index')}}"><i class="icon-arrow-right"></i>Registrar Notas</a></li>
@@ -363,7 +276,7 @@
                         </ul>
                     </li>   
 
-                    <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Pabellon</span><i class="icon-arrow-down"></i></a>
+                    <li class="{{ activeMenu('classrooms*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Pabellon</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
                             <li><a class="waves-effect waves-dark" href="{{ route('classrooms.index') }}"><i class="icon-arrow-right"></i> Registrar Aula</a></li>
                           
@@ -380,7 +293,9 @@
                             <li><a class="waves-effect waves-dark" href="/students/detail/show/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Mis Datos</a></li>
                             <li><a class="waves-effect waves-dark" href="/students/detail/calendar/programming/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Horario</a></li>
                             <li><a class="waves-effect waves-dark" href="/students/detail/course/note/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Notas</a></li>
-                            <li><a class="waves-effect waves-dark" href=""><i class="icon-arrow-right"></i> Cursos</a></li>
+
+                            <li><a class="waves-effect waves-dark" href="/students/detail/course/assistance/{{ auth()->id() }}"><i class="icon-arrow-right"></i> Historial Asistencia</a></li>
+                          
                           
                         </ul>
                     </li>
@@ -393,9 +308,9 @@
                     
                     <li class="treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Apoderado</span><i class="icon-arrow-down"></i></a>
                         <ul class="treeview-menu">
-                            <li><a class="waves-effect waves-dark" href="accordion.html"><i class="icon-arrow-right"></i> Mis Datos</a></li>
+                            
                             <li><a class="waves-effect waves-dark" href="/attorneys/students/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Mis hijos</a></li>
-                            <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i> Pagos</a></li>
+                          
                         </ul>
                     </li>
 
@@ -444,6 +359,20 @@
 </div>
 
       <script src="{{asset('assets/plugins/jquery/dist/jquery.min.js')}}"></script>
+
+      <script type="text/javascript">
+          function calcularUpdate() { 
+              n1 = parseFloat(document.getElementById('n1').value); 
+              n2 = parseFloat(document.getElementById('n2').value); 
+              n3 = parseFloat(document.getElementById('n3').value); 
+              n4 = parseFloat(document.getElementById('n4').value); 
+              var rest =(n1+n2+n3+n4)/4;
+                if(!isNaN(rest))
+                document.getElementById('total').value = rest.toFixed(2);
+            } 
+      </script>
+
+      <script type="text/javascript" src="{{ asset('js/validate.js')}}" ></script>
       {{-- <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script> --}}
 
 
@@ -486,30 +415,19 @@
 
 
       <script src="{{ asset('js/mdtimepicker.js')}}"></script>
-<script>
-  $(document).ready(function(){
-    $('#timepicker').mdtimepicker(); //Initializes the time picker
-     $('#timepicker1').mdtimepicker(); //Initializes the time picker
-  });
-</script>
+                <script>
+                  $(document).ready(function(){
+                    $('#timepicker').mdtimepicker(); //Initializes the time picker
+                     $('#timepicker1').mdtimepicker(); //Initializes the time picker
+                  });
+                </script>
 
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-      <script type="text/javascript">
-        $(document).ready(function () {
-            (function ($) {
-                $('#filtrar').keyup(function () {
-                    var rex = new RegExp($(this).val(), 'i');
-                    $('.buscar tr').hide();
-                    $('.buscar tr').filter(function () {
-                        return rex.test($(this).text());
-                    }).show();
-                })
+       
 
-            }(jQuery));
-        });
-      </script>   
+        @include('sweet::alert')
 
       <script type="text/javascript">
 
@@ -536,87 +454,21 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-              <script type="text/javascript">
-                     $(document).ready(function(){
+        <script type="text/javascript">
+                    $(document).ready(function(){
+
                     $('#mibuscador').select2();
+
+                    $('#schearProgramming').select2();
+
+                    $('#schearDetail').select2();
+
+                    $('#schearCourse').select2();
 
             });
         </script>
 
-      <script type="text/javascript">
-        $(".delete-edition-btn").on("click", function(event){
-        event.preventDefault();
 
-        swal({
-            title: "Estás seguro?",
-            text: "No podrás recuperar este Rol !", type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B25",
-            confirmButtonText: "Si, eliminar esto!",
-            closeOnConfirm: false
-        },
-        function(){
-            // Use closest() to find the correct form in the DOM
-          $("form#deleteedition").submit();
-        });
-        });
-
-        $(".delete-student-btn").on("click", function(event){
-        event.preventDefault();
-
-        swal({
-            title: "Estás seguro?",
-            text: "No podrás recuperar este Alumno !", type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B25",
-            confirmButtonText: "Si, eliminar esto!",
-            closeOnConfirm: false
-        },
-        function(){
-            // Use closest() to find the correct form in the DOM
-          $("form#deleteestudent").submit();
-        });
-        });
-
-        $(".delete-attorney-btn").on("click", function(event){
-        event.preventDefault();
-
-        swal({
-            title: "Estás seguro?",
-            text: "No podrás recuperar este Apoderado !", type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B25",
-            confirmButtonText: "Si, eliminar esto!",
-            closeOnConfirm: false
-        },
-        function(){
-            // Use closest() to find the correct form in the DOM
-          $("form#deleteattorney").submit();
-        });
-        });
-
-
-
-         $(".delete-teacher-btn").on("click", function(event){
-        event.preventDefault();
-
-        swal({
-            title: "Estás seguro?",
-            text: "No podrás recuperar este Docente !", type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B25",
-            confirmButtonText: "Si, eliminar esto!",
-            closeOnConfirm: false
-        },
-        function(){
-            // Use closest() to find the correct form in the DOM
-          $("form#deleteteacher").submit();
-        });
-        });
-
-        </script>
-
-        @include('sweet::alert')
 
 
 

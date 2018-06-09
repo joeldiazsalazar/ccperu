@@ -39,14 +39,14 @@
 <div class="row">
 <div class="form-group col-md-4">
     <label for="nombres" class="form-control-label">Nombre Completo</label>
-    <input type="text" class="form-control" id="nombres" aria-describedby="emailHelp" placeholder="" name="nombres" value="{{ old('nombres')}}" onkeyup="copyuser()">
+    <input type="text" class="form-control" id="nombres" aria-describedby="emailHelp" placeholder="" name="nombres" value="{{ old('nombres')}}" onkeyup="copyuser()" onkeypress="return soloLetras(event)">
 
     {!! $errors->first('nombres','<span class=error>:message</span>')!!}
 </div>
 
 <div class="form-group col-md-4">
     <label for="apellidoPaterno" class="form-control-label">apellidoPaterno</label>
-    <input type="text" class="form-control" id="apellidoPaterno" aria-describedby="emailHelp" placeholder="" name="apellidoPaterno" value="{{ old('apellidoPaterno')}}">
+    <input type="text" class="form-control" id="apellidoPaterno" aria-describedby="emailHelp" placeholder="" name="apellidoPaterno" value="{{ old('apellidoPaterno')}}" onkeypress="return soloLetras(event)">
 
     {!! $errors->first('apellidoPaterno','<span class=error>:message</span>')!!}
 </div>
@@ -54,21 +54,21 @@
  
 <div class="form-group col-md-4">
     <label for="apellidoMaterno" class="form-control-label">apellidoMaterno</label>
-        <input type="text" class="form-control" id="apellidoMaterno" placeholder=""  name="apellidoMaterno" value="{{ old('apellidoMaterno')}}">
+        <input type="text" class="form-control" id="apellidoMaterno" placeholder=""  name="apellidoMaterno" value="{{ old('apellidoMaterno')}}" onkeypress="return soloLetras(event)">
 
         {!! $errors->first('apellidoMaterno','<span class=error>:message</span>')!!}
 </div>
  
 <div class="form-group col-md-4">
     <label for="email" class="form-control-label">Email</label>
-        <input type="text" class="form-control" id="email" placeholder=""  name="email" value="{{ old('email')}}">
+        <input type="text" class="form-control" id="email" placeholder=""  name="email" value="{{ old('email')}}" onkeypress="return validarEmail(event)">
 
         {!! $errors->first('email','<span class=error>:message</span>')!!}
 </div>
  
 <div class="form-group col-md-4">
     <label for="dni" class="form-control-label">dni</label>
-        <input type="text" class="form-control" id="dni" placeholder=""  name="dni" value="{{ old('dni')}}">
+        <input type="text" class="form-control" id="dni" placeholder=""  name="dni" value="{{ old('dni')}}" maxlength="10" onkeyup="Card(event, this)">
 
         {!! $errors->first('dni','<span class=error>:message</span>')!!}
 </div>
@@ -101,7 +101,7 @@
 
 <div class="form-group col-md-3">
     <label for="distrito" class="form-control-label">distrito</label>
-        <input type="text" class="form-control" id="distrito" placeholder=""  name="distrito" value="{{ old('distrito')}}">
+        <input type="text" class="form-control" id="distrito" placeholder=""  name="distrito" value="{{ old('distrito')}}" onkeypress="return soloLetras(event)">
 
         {!! $errors->first('distrito','<span class=error>:message</span>')!!}
 </div>
@@ -109,7 +109,7 @@
 <div class="row">
 <div class="form-group col-md-4">
     <label for="departamento" class="form-control-label">departamento</label>
-        <input type="text" class="form-control" id="departamento" placeholder=""  name="departamento" value="{{ old('departamento')}}">
+        <input type="text" class="form-control" id="departamento" placeholder=""  name="departamento" value="{{ old('departamento')}}" onkeypress="return soloLetras(event)">
 
         {!! $errors->first('departamento','<span class=error>:message</span>')!!}
 </div>

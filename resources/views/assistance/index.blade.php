@@ -38,6 +38,18 @@
 
 <div class="card-block">
 
+<div class="container">
+
+       	 {!! Form::open(['route' => 'assistances.index', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) !!}
+
+
+       	 {!! Form::text('search', null , ['class' => 'form-control mr-sm-2']) !!}
+
+
+
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    	 {!! Form::close() !!}
+    </div>
 
 	<table class="table table-hover">
 	
@@ -49,6 +61,7 @@
 	<th>curso</th>
 	<th>alumno</th>
 	<th>profesor</th>
+	<th>fecha</th>
 	<th>Acciones</th>
 	</tr>
 </thead>
@@ -59,11 +72,13 @@
 	<td>{{ $assistances->id }}</td>
 	<td>{{ $assistances->programming_id }}</td>
 
-	<td>{{ $assistances->course_id }}</td>
+	<td>{{ $assistances->course->name }}</td>
 
-	<td>{{ $assistances->user_id }}</td>
+	<td>{{ $assistances->user->name }}</td>
 
-	<td>{{ $assistances->teacher_id}}</td>
+	<td>{{ $assistances->teacher->nombres }}</td>
+
+	<td>{{ $assistances->created_at}}</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('assistances.edit', $assistances->id) }}">Editar</a>
@@ -83,7 +98,7 @@
 	@endforeach
 </tbody>
 </table>
-
+{{ $assistance->links('vendor.pagination.bootstrap-4') }}
 
 </div>
 

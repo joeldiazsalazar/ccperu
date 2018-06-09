@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpdateUserRequest;
 
 use App\Role;
@@ -26,16 +28,25 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->get('name'));
+
+        // $users = User::name($request->get('name'))->orderBy('name')->paginate(3);
         
-        $users = User::orderBy('name')->paginate(5);
+
+        if ($request->search == "") {
+           $users = User::paginate(5);
+           return view('auth.index', compact('users'));
+        }else{
+            $users = User::where('name','LIKE','%' . $request->search . '%')->paginate(3);
+            $users->appends($request->only('search'));
+            return view('auth.index', compact('users'));
+        }
         
-        return view('auth.index', compact('users'));
     }
 
-
-
+          
     public function create()
     {
 
@@ -67,7 +78,9 @@ class UsersController extends Controller
        User::create($request->all());
 
         // Redireccionar mensaje
-        return back()->with('info','Usuario Agregado');   
+       Alert::success('<a href="/users/create/">Desea agregar otro usuario?</a>')->html()->persistent("No, Gracias");
+            
+        return redirect()->route('users.index');
     
     }
 
