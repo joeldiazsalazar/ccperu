@@ -51,6 +51,8 @@
 
 		Route::get('cpanel', 'PanelController@index')->name('cpanel');
 
+		Route::get('statistics', 'PagesController@index')->name('statistics.index');
+
 		Route::get('/errors', function () {
 		    return view('errors.index');
 		});	

@@ -55,7 +55,7 @@
 
 
      <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css')}}">
-
+     
  </head>
 
 <body class="sidebar-mini fixed">
@@ -234,7 +234,7 @@
                             
                             {{-- <li class="{{ activeMenu('users/create')}}"><a class="waves-effect waves-dark" href="{{ route('users.create')}}"><i class="icon-arrow-right"></i> Agregar usuario</a></li> --}}
                             <li class="{{ activeMenu('users/index')}}"><a class="waves-effect waves-dark" href="{{ route('users.index')}}"><i class="icon-arrow-right"></i> Lista Usuarios</a></li>
-                           {{--  <li><a class="waves-effect waves-dark" href="label-badge.html"><i class="icon-arrow-right"></i>Reporte</a></li>  --}}                         
+                            <li><a class="waves-effect waves-dark" href="{{ route('statistics.index')}}"><i class="icon-arrow-right"></i>Reportes</a></li>                          
                         </ul>
                     </li>
 
