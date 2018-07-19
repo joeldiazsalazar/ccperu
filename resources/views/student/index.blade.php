@@ -12,7 +12,7 @@
                             <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
                                 <li class="breadcrumb-item"><a href="{{ route('cpanel')}}"><i class="icofont icofont-home"></i></a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('students.create')}}">Agregar Usuario</a>
+                                <li class="breadcrumb-item"><a href="{{ route('students.create')}}">Agregar Alumno</a>
                                 </li>
                                 
                             </ol>
@@ -25,7 +25,7 @@
                     <!-- Form Control starts -->
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><h5 class="card-header-text">Registro de Usuarios</h5>
+                            <div class="card-header"><h5 class="card-header-text">Registro de Alumnos</h5>
                                 <div class="f-right">
 
                                 	<a href="{{ route('students.create')}}" class="btn btn-info">Agregar Nuevo Estudiante</a>
@@ -53,7 +53,8 @@
     	 {!! Form::close() !!}
     </div>
 
-<table class="table table-hover">
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
@@ -71,13 +72,13 @@
 	
 	@foreach ($students as $student)
 	<tr>
-	<td>{{ $student->id }}</td>
+	<td data-title="Id">{{ $student->id }}</td>
 
-	<td>{{ $student->nombres }}</td>
-	<td>{{ $student->apellidoPaterno}}</td>
-	<td>{{ $student->apellidoMaterno}}</td>
-	<td>{{ $student->email}}</td>
-	<td>{{ $student->estado}}</td>
+	<td data-title="Nombres">{{ $student->nombres }}</td>
+	<td data-title="ApellidoPaterno">{{ $student->apellidoPaterno}}</td>
+	<td data-title="ApellidoMaterno">{{ $student->apellidoMaterno}}</td>
+	<td data-title="Email">{{ $student->email}}</td>
+	<td data-title="Estado">{{ $student->estado}}</td>
 
 {{-- 	<td>
 
@@ -114,6 +115,7 @@
 	
 </tbody>
 </table>
+</div>
 {{ $students->links('vendor.pagination.bootstrap-4') }}
 </div>
 

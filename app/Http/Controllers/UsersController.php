@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpdateUserRequest;
-
+use Alert;
 use App\Role;
 use App\Student;
 use App\User;
@@ -120,18 +120,46 @@ class UsersController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
 
+
+
         $user = User::findOrFail($id);
 
         $this->authorize('update',$user);
 
+        if ($request->hasFile('avatar')) {
 
-        $user->update($request->all());
+        $user->avatar = $request->file('avatar')->store('public');
 
-        $user->student()->sync($request->student);
-        $user->attorney()->sync($request->attorney);
-        $user->teacher()->sync($request->teacher);
+        }
 
-        return redirect()->route('users.index');
+
+        //agregar logica correspondiente
+
+                if (auth()->check()){
+
+                if (auth()->user()->hasRoles(['admin'])) {
+                    $user->update($request->only('name','username'));
+                    $user->student()->sync($request->student);
+                    $user->attorney()->sync($request->attorney);
+                    $user->teacher()->sync($request->teacher);
+
+                    return redirect()->route('users.index');
+                }elseif (auth()->user()->hasRoles(['alumno'])) {
+                     $user->update($request->only('password'));
+                    return redirect()->route('cpanel');
+                }
+                elseif (auth()->user()->hasRoles(['docente'])) {
+                    $user->update($request->only('password'));
+                    return redirect()->route('cpanel');
+                }
+                elseif (auth()->user()->hasRoles(['apoderado'])) {
+                    $user->update($request->only('password'));
+                    return redirect()->route('cpanel');
+                }
+            }
+            
+      
+        
     }
 
     /**

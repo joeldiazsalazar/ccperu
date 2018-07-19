@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Programming extends Model
 {
     
-	    use Notifiable;
+	use Notifiable;
 
     /**
      * The attributes that are mass assignable.

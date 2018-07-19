@@ -9,11 +9,6 @@ if(!isNaN(pro))
 document.getElementById('prom_'+Valor).value = pro.toFixed(2);
 }
 
-
-
-
-
-
 function checkSubmit() {
     document.getElementById("btn_note").value = "Enviando...";
     document.getElementById("btn_note").disabled = true;
@@ -103,9 +98,3 @@ return 0;
 return -1;
 }
 }
-
-
-
-
-
-

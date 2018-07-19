@@ -27,47 +27,142 @@
                     <!-- Form Control starts -->
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header"><h5 class="card-header-text">Asignacion de Usuarios</h5>
+                            <div class="card-header">
+
+                              @if (auth()->check())
+
+                              @if (auth()->user()->hasRoles(['admin']))
+                              <h5 class="card-header-text">Asignacion de Usuarios</h5>
+
+                              @elseif(auth()->user()->hasRoles(['alumno']))
+                              <h5 class="card-header-text">Cambiar contraseña</h5>
+
+                              @elseif(auth()->user()->hasRoles(['docente']))
+                              <h5 class="card-header-text">Cambiar contraseña</h5>
+
+                              @elseif(auth()->user()->hasRoles(['apoderado']))
+                              <h5 class="card-header-text">Cambiar contraseña</h5>
+
+                              @endif
+
+                              @endif
+
+
                          </div>
 
 <div class="card-block">
 
 
-<form method="POST" action=" {{ route('users.update', $user->id)}} ">
+<form method="POST" action=" {{ route('users.update', $user->id)}} " enctype="multipart/form-data">
 	{!! method_field('PUT') !!}
 
 	{!! csrf_field() !!}
 
-  <div class="form-group col-md-6">
+@if (auth()->check())
+
+@if (auth()->user()->hasRoles(['admin']))
+
+  <div class="form-group col-md-4">
+    
+    <img src="{{ Storage::url($user->avatar)}}" style="width: 150px; height: 150px;">
+     <input type="file" name="avatar">
+ 
+  </div>
+
+  <div class="form-group col-md-4">
     
     <p><label for="nombre">
-  Nombre
+               Nombre
 
-  <input class="form-control" type="text" name="name" value="{{ $user->name }}">
+        <input class="form-control" type="text" name="name" value="{{ $user->name }}">
 
   {!! $errors->first('name','<span class=error>:message</span>')!!}
-</label></p>
+  </label></p>
 
   </div>
-	<div class="form-group col-md-6">
-
+	<div class="form-group col-md-4">
 
 <p><label for="username">
 	Username
 	<input class="form-control" type="text" name="username" value="{{ $user->username}}">
 
 	{!! $errors->first('username','<span class=error>:message</span>')!!}
-</label></p>
+</label>
+</p>
 </div>
+@unless($user->id)
+<div class="form-group col-md-6">
+    <label for="password" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+
+        {!! $errors->first('password','<span class=error>:message</span>')!!}
+</div>
+<div class="form-group col-md-6">
+    <label for="password_confirmation" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password_confirmation" placeholder="password_confirmation" name="password_confirmation" >
+
+        {!! $errors->first('password_confirmation','<span class=error>:message</span>')!!}
+</div>
+@endunless
+
+@endif
+@endif
+
+@if (auth()->check())
+
+@if (auth()->user()->hasRoles(['alumno']))
+<div class="form-group col-md-6">
+    <label for="password" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+
+        {!! $errors->first('password','<span class=error>:message</span>')!!}
+</div>
+<div class="form-group col-md-6">
+    <label for="password_confirmation" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password_confirmation" placeholder="password_confirmation" name="password_confirmation" >
+
+        {!! $errors->first('password_confirmation','<span class=error>:message</span>')!!}
+</div>
+@elseif(auth()->user()->hasRoles(['docente']))
+<div class="form-group col-md-6">
+    <label for="password" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+
+        {!! $errors->first('password','<span class=error>:message</span>')!!}
+</div>
+<div class="form-group col-md-6">
+    <label for="password_confirmation" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password_confirmation" placeholder="password_confirmation" name="password_confirmation" >
+
+        {!! $errors->first('password_confirmation','<span class=error>:message</span>')!!}
+</div>
+
+@elseif(auth()->user()->hasRoles(['apoderado']))
+<div class="form-group col-md-6">
+    <label for="password" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+
+        {!! $errors->first('password','<span class=error>:message</span>')!!}
+</div>
+<div class="form-group col-md-6">
+    <label for="password_confirmation" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password_confirmation" placeholder="password_confirmation" name="password_confirmation" >
+
+        {!! $errors->first('password_confirmation','<span class=error>:message</span>')!!}
+</div>
+
+@endif
+@endif
 
 @if (auth()->check())
 
 @if (auth()->user()->hasRoles(['admin']))
 
-
 <div class="container">
+<div class="row">
+  
 
-<ul class="nav nav-tabs  tabs" role="tablist">
+<ul class="nav nav-tabs col-md-12  tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Asignacion Alumnos<a>
     </li>
@@ -142,27 +237,11 @@
         {!! $errors->first('teacher','<span class=error>:message</span>')!!}
 </div>
 
-
-
-
-
-
-
-
-
-
     </div>
   
 </div>
-
 </div>
-
-
-
-
-
-
-
+</div>
 
 @endif
 @endif

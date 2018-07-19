@@ -97,13 +97,13 @@
 			@foreach($pro->programming->enrollment as $wtf)
 			<tr class="row">
 			<td> 
-				<input type="checkbox" name="user_id[]" checked value="{{ $wtf->user_id }}">{{ $wtf->user->name }}
+				<input  type="checkbox" name="user_id[]" checked value="{{ $wtf->user_id }}">{{ $wtf->user->name }}
 			</td>
-			 <td><input type="text" name="nota1[{{$not1++}}]"  id="note1_{{$id1++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met1++}});" maxlength="2" ></td>
-             <td> <input type="text" name="nota2[{{$not2++}}]"  id="note2_{{$id2++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met2++}})" maxlength="2"></td>
-             <td> <input type="text" name="nota3[{{$not3++}}]"  id="note3_{{$id3++}}"  style="width: 70px; text-align: center;"  onkeyup="calcular({{$met3++}})" maxlength="2"></td>
-             <td> <input type="text" name="nota4[{{$not4++}}]"  id="note4_{{$id4++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met4++}})" maxlength="2"></td>
-             <td> <input type="text" name="promedio[{{$prom++}}]"  id="prom_{{$id5++}}"  style="width: 70px; text-align: center;" ></td>
+			 <td><input class="form-control" type="text" name="nota1[{{$not1++}}]"  id="note1_{{$id1++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met1++}});" maxlength="2" ></td>
+             <td> <input class="form-control" type="text" name="nota2[{{$not2++}}]"  id="note2_{{$id2++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met2++}})" maxlength="2"></td>
+             <td> <input class="form-control" type="text" name="nota3[{{$not3++}}]"  id="note3_{{$id3++}}"  style="width: 70px; text-align: center;"  onkeyup="calcular({{$met3++}})" maxlength="2"></td>
+             <td> <input class="form-control" type="text" name="nota4[{{$not4++}}]"  id="note4_{{$id4++}}"  style="width: 70px; text-align: center;" onkeyup="calcular({{$met4++}})" maxlength="2"></td>
+             <td> <input class="form-control" type="text" name="promedio[{{$prom++}}]"  id="prom_{{$id5++}}"  style="width: 70px; text-align: center;" ></td>
          
 			</tr>
 			@endforeach

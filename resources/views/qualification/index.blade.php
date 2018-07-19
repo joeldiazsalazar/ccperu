@@ -50,9 +50,8 @@
     	 {!! Form::close() !!}
     </div>
 
-	<table class="table table-hover">
-	
-
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 <thead>
 	<tr>
 	<th>Alumno</th>
@@ -72,22 +71,22 @@
 	
 	@foreach ($qualification as $qualifications)
 <tr>
-	<td>{{ $qualifications->user->name }}</td>
-	<td>{{ $qualifications->user->username }}</td>
+	<td data-title="Nombre">{{ $qualifications->user->name }}</td>
+	<td data-title="Codigo">{{ $qualifications->user->username }}</td>
 
-	<td>{{ $qualifications->trimester->name }}</td>
+	<td data-title="Trimestre">{{ $qualifications->trimester->name }}</td>
 
-	<td>{{ $qualifications->course->name }}</td>
+	<td data-title="Curso">{{ $qualifications->course->name }}</td>
 
-	<td>{{ $qualifications->nota1}}</td>
+	<td data-title="Nota 1">{{ $qualifications->nota1}}</td>
 
-	<td>{{ $qualifications->nota2}}</td>
+	<td data-title="Nota 2">{{ $qualifications->nota2}}</td>
 		
-	<td>{{ $qualifications->nota3}}</td>
+	<td data-title="Nota 3">{{ $qualifications->nota3}}</td>
 			
-	<td>{{ $qualifications->nota4}}</td>
+	<td data-title="Nota 4">{{ $qualifications->nota4}}</td>
 				
-	<td>{{ $qualifications->promedio}}</td>
+	<td data-title="Promedio">{{ $qualifications->promedio}}</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('qualifications.edit', $qualifications->id) }}">Editar</a>
@@ -100,6 +99,7 @@
 	@endforeach
 </tbody>
 </table>
+</div>
 {{ $qualification->links('vendor.pagination.bootstrap-4') }}
 
 </div>

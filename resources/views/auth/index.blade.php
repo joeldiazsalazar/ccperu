@@ -30,9 +30,28 @@
                                 	<a href="{{ route('users.create')}}" class="btn btn-info">Agregar Usuario</a>
                                     <a href="" data-toggle="modal" data-target="#input-type-Modal"><i class="icofont icofont-code-alt"></i></a>
 
-
                                 </div>
+                                <div class="modal fade modal-flex" id="input-type-Modal" tabindex="-1" role="dialog">
+										<div class="modal-dialog modal-lg" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h5 class="modal-title">Code Explanation for Border Checkbox</h5>
+												</div>
+												<!-- end of modal-header -->
+												<div class="modal-body">
+									                      
 
+
+												</div>
+												<!-- end of modal-body -->
+											</div>
+											<!-- end of modal-content -->
+										</div>
+										<!-- end of modal-dialog -->
+									</div>
 
                             </div>
 
@@ -53,7 +72,8 @@
 <div class="container">
 
 	
-<table class="table table-hover">
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
@@ -69,15 +89,15 @@
 	
 	@foreach ($users as $user)
 	<tr>
-	<td>{{ $user->id }}</td>
+	<td data-title="ID">{{ $user->id }}</td>
 
-	<td>{{ $user->name }}</td>
+	<td data-title="Nombre">{{ $user->name}}</td>
 
 
 
-	<td>{{ $user->role->display_name}}</td>
+	<td data-title="Rol">{{ $user->role->display_name}}</td>
 	
-	<td>
+	<td data-title="Asignacion">
 
 		@foreach($user->student as $students)
 
@@ -129,7 +149,7 @@
 
 </tbody>
 </table>
-
+</div>
 
 {{ $users->links('vendor.pagination.bootstrap-4') }}
 

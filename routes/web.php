@@ -36,6 +36,11 @@
 		   return  $class - $pos;
 		});		
 
+		Route::get('/fecha', function(){
+			date_default_timezone_set('Asia/Kolkata');
+			$now = new \DateTime();
+			dd($now);
+		});
 
 		Route::get('/', function () {
 		    return view('auth.login');
@@ -49,9 +54,19 @@
 		Route::get('tipo/{type}', 'SweetController@notification');
 
 
-		Route::get('cpanel', 'PanelController@index')->name('cpanel');
+		Route::get('home', 'PanelController@index')->name('cpanel');
 
-		Route::get('statistics', 'PagesController@index')->name('statistics.index');
+		// Route::get('statistics', 'PagesController@index')->name('statistics.index');
+
+		Route::get('listado_graficas', 'GraficasController@index')->name('statistics.index');
+		Route::get('reports', 'ReportsController@index')->name('reports.index');
+
+		Route::get('grafica_registros/{anio}/{mes}', 'GraficasController@registros_mes');
+
+		Route::get('reportes_registros/{anio}/{mes}/{estado}', 'ReportsController@registros_m');
+
+
+		Route::get('grafica_publicaciones', 'GraficasController@total_publicaciones');
 
 		Route::get('/errors', function () {
 		    return view('errors.index');
@@ -87,12 +102,24 @@
 		// Route::any( '/search',['as' => 'users.search','uses' => 'UsersController@search']);
 
 
+		Route::get('payments',['as' => 'payments.index','uses' => 'PaymentsController@index']);
+
+		Route::post('payments',['as' => 'payments.store','uses' => 'PaymentsController@store']);
+
+		Route::get('payments/create',['as' => 'payments.create','uses' => 'PaymentsController@create']);
+
+		Route::get('payments/show/{id}',['as' => 'payments.show','uses' => 'PaymentsController@show']);
+
+		Route::get('payments/{id}/edit',['as' => 'payments.edit','uses' => 'PaymentsController@edit']);
+
+		Route::delete('payments/{id}',['as' => 'payments.destroy','uses' => 'PaymentsController@destroy']);
+
+		Route::put('payments/{id}',['as' => 'payments.update','uses' => 'PaymentsController@update']);
 
 
 
-
-
-
+		Route::get('students/payment/show/{id}',['as' => 'payments.student','uses' => 'PaymentsController@student']);
+		Route::get('students/payment/detail/{id}',['as' => 'payments.student_detail','uses' => 'PaymentsController@detail']);
 
 
 
@@ -230,6 +257,7 @@
 
 		Route::put('enrollments/{id}',['as' => 'enrollments.update','uses' => 'EnrollmentsController@update']);
 
+		Route::get('dowload-enrollment/{id}', 'EnrollmentsController@pdf')->name('products.pdf');
 		
 		// metodos para el aula
 
@@ -343,7 +371,7 @@
 	// aca pe 
 
 
-	Route::get('/refresc','QualificationsController@lista');
+		Route::get('/refresc','QualificationsController@lista');
 
 		Auth::routes();
 

@@ -53,7 +53,8 @@
     	 {!! Form::close() !!}
     </div>
 
-<table class="table table-hover">
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
@@ -72,13 +73,13 @@
 	
 	@foreach ($attorney as $attorneys)
 	<tr>
-	<td>{{ $attorneys->id }}</td>
+	<td data-title="ID">{{ $attorneys->id }}</td>
 
-	<td>{{ $attorneys->nombres }}</td>
-	<td>{{ $attorneys->apellidoPaterno}}</td>
-	<td>{{ $attorneys->apellidoMaterno}}</td>
-	<td>{{ $attorneys->dni}}</td>
-	<td>{{ $attorneys->estado}}</td>
+	<td data-title="Nombres">{{ $attorneys->nombres }}</td>
+	<td data-title="ApellidoPaterno">{{ $attorneys->apellidoPaterno}}</td>
+	<td data-title="ApellidoMaterno">{{ $attorneys->apellidoMaterno}}</td>
+	<td data-title="Dni">{{ $attorneys->dni}}</td>
+	<td data-title="Estado">{{ $attorneys->estado}}</td>
 
 
 {{-- 	<td>
@@ -113,6 +114,7 @@
 	
 </tbody>
 </table>
+</div>
 {{ $attorney->links('vendor.pagination.bootstrap-4') }}
 </div>
 

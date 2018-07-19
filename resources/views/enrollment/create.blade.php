@@ -36,67 +36,62 @@
                                 </div>
                             </div>
 
-<div class="card-block">
-<form method="POST" action=" {{ route('enrollments.store')}} ">
+            <div class="card-block">
+            <form method="POST" action=" {{ route('enrollments.store')}} ">
 
-    {!! csrf_field() !!}
+                {!! csrf_field() !!}
 
-<div class="form-group">
-    <label for="student_id" class="form-control-label">Alumno</label>
-    <select name="student_id">
-    @foreach($student as $students)
-    <option value="{{ $students->id }}"> {{ $students->nombres}}</option>
-    @endforeach
+            <div class="form-group col-md-6">
+                <label for="student_id" class="form-control-label">Alumno</label>
+                <select name="student_id" id="schearEnrollmentStudent">
+                @foreach($student as $students)
+                <option value="{{ $students->id }}"> {{ $students->nombres}}</option>
+                @endforeach
 
-</select>
+            </select>
 
-    {!! $errors->first('student_id','<span class=error>:message</span>')!!}
-</div>
+                {!! $errors->first('student_id','<span class=error>:message</span>')!!}
+            </div>
 
-<div class="form-group">
-    <label for="user_id" class="form-control-label">User</label>
-    <select name="user_id">
-    @foreach($user as $users)
-    <option value="{{ $users->id }}"> {{ $users->username}}</option>
-    @endforeach
+            <div class="form-group col-md-6">
+                <label for="user_id" class="form-control-label">User</label>
+                <select name="user_id" id="schearEnrollmentUser">
+                @foreach($user as $users)
+                <option value="{{ $users->id }}"> {{ $users->username}}</option>
+                @endforeach
 
-    </select>
+                </select>
 
-    {!! $errors->first('user_id','<span class=error>:message</span>')!!}
-</div>
+                {!! $errors->first('user_id','<span class=error>:message</span>')!!}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="programming_id" class="form-control-label">Nivel</label>
+                <select name="programming_id" id="mibuscador">
+                @foreach($programming as $programmings)
+                <option value="{{ $programmings->id }}"> {{ $programmings->nivel . ' - ' .$programmings->grado . '- ' .$programmings->classroom->pabellon}}</option>
+                @endforeach
 
-<div class="form-group">
-    <label for="monto" class="form-control-label">Monto</label>
-        <input type="text" name="monto">
+                </select>
 
-    {!! $errors->first('monto','<span class=error>:message</span>')!!}
-</div>
+                {!! $errors->first('programming_id','<span class=error>:message</span>')!!}
+            </div>
+            <div class="form-group col-md-6">
+                <label for="monto" class="form-control-label">Monto</label>
+                    <input type="text" name="monto" class="form-control">
 
-<div class="form-group">
-    <label for="estado" class="form-control-label">estado</label>
-    
-<br>
-        <label class="radio-inline"><input type="radio" name="estado" value="activo">Cancelado</label>
-        <label class="radio-inline"><input type="radio" name="estado" value="inactivo">Pendiente</label>  
+                {!! $errors->first('monto','<span class=error>:message</span>')!!}
+            </div>
 
-    {!! $errors->first('estado','<span class=error>:message</span>')!!}
-</div>
+            <div class="form-group col-md-12">
+                <label for="estado" class="form-control-label">estado</label>
+                
+            <br>
+                    <label class="radio-inline"><input type="radio" name="estado" value="activo">Cancelado</label>
+                    <label class="radio-inline"><input type="radio" name="estado" value="inactivo">Pendiente</label>  
 
+                {!! $errors->first('estado','<span class=error>:message</span>')!!}
+            </div>
 
-<div class="form-group">
-    <label for="programming_id" class="form-control-label">Nivel</label>
-    <select name="programming_id" id="mibuscador">
-    @foreach($programming as $programmings)
-    <option value="{{ $programmings->id }}"> {{ $programmings->nivel . ' - ' .$programmings->grado . '- ' .$programmings->classroom->pabellon}}</option>
-    @endforeach
-
-    </select>
-
-    {!! $errors->first('programming_id','<span class=error>:message</span>')!!}
-</div>
-
-
- 
 <input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">
 
 </form>

@@ -2053,6 +2053,11 @@ select.form-control-lg:not([size]):not([multiple]) {
     font-size: 1rem;
     border-radius: .25rem
 }
+.disabledbutton {
+            pointer-events: none !important;
+            opacity: 0.4 !important;
+}
+
 .btn.active.focus,
 .btn.active:focus,
 .btn.focus,
@@ -5759,4 +5764,7 @@ a.text-danger:hover {
         display: none!important
     }
 }
+
+
+
 /*# sourceMappingURL=bootstrap.min.css.map */

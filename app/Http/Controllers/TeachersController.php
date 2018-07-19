@@ -108,7 +108,7 @@ class TeachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ValidateTeacherRequest $request, $id)
+    public function update(Request $request, $id)
     {
       
 
@@ -310,12 +310,7 @@ class TeachersController extends Controller
             'user_id'   => $value
          ]);
 
-
-       
-    
     }
-
-
 
 //     for ($i=0; $i < count($request['enrollment_id']); $i++) 
 // {

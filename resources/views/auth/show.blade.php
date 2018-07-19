@@ -5,13 +5,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="main-header">
-                <h4>Profile</h4>
+                <h4>Perfil</h4>
                 <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-home"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('cpanel')}}"><i class="icofont icofont-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#!">Extras</a>
+                    <li class="breadcrumb-item"><a href="{{ route('cpanel')}}">Home</a>
                     </li>
-                    <li class="breadcrumb-item"><a href="profile.html">Profile</a>
+                    <li class="breadcrumb-item"><a href="{{ route('users.show',$users->id)}}">Perfil</a>
                     </li>
                 </ol>
             </div>
@@ -21,29 +21,17 @@
             <div class="col-xl-3 col-lg-4">
                 <div class="card faq-left">
                     <div class="social-profile">
-                        <img class="img-fluid" src="{{ asset('assets/images/social/profile.jpg')}}" alt="">
-                        <div class="profile-hvr m-t-15">
-                            <i class="icofont icofont-ui-edit p-r-10 c-pointer"></i>
-                            <i class="icofont icofont-ui-delete c-pointer"></i>
-                        </div>
+                        <img class="img-fluid" src="{{ Storage::url($users->avatar) }}" alt="">
+                        
                     </div>
                     <div class="card-block">
                         <h4 class="f-18 f-normal m-b-10 txt-primary">{{ $users->name}}</h4>
-                        <h5 class="f-14">Software Engineer</h5>
-                        <p class="m-b-15">Lorem ipsum dolor sit amet, consectet
-                        ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte</p>
+                        
+                        
                         <ul>
-                            <li class="faq-contact-card">
-                                <i class="icofont icofont-telephone"></i>
-                                +(1234) - 5678910
-                            </li>
                             <li class="faq-contact-card">
                                 <i class="icofont icofont-world"></i>
                                 <a href="http://phoenixcoded.com">www.phoenixcoded.com</a>
-                            </li>
-                            <li class="faq-contact-card">
-                                <i class="icofont icofont-email"></i>
-                                <a href="mailto:joe@example.com">demo@phoenixcoded.com</a>
                             </li>
                         </ul>
 
@@ -77,12 +65,12 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="personal" role="tabpanel">
                         <div class="card">
-                            <div class="card-header"><h5 class="card-header-text">About Me</h5>
+                            <div class="card-header"><h5 class="card-header-text"></h5>
 
 
                                 @can('edit', $users)
 
-                                <a class="btn btn-primary waves-effect waves-light f-right" href="{{ route('users.edit', $users->id) }}"><i  class="icofont icofont-edit"></i>Editar</a>
+                                <a class="btn btn-primary waves-effect waves-light f-left" href="{{ route('users.edit', $users->id) }}"><i  class="icofont icofont-edit"></i>Cambiar Contraseña</a>
 
                                 @endcan
 
@@ -109,13 +97,10 @@
                                                         <table class="table">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th scope="row">Email</th>
+                                                                    <th scope="row">Codigo</th>
                                                                     <td><a href="#!"> {{ $users->username}}</a></td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <th scope="row">Avatar</th>
-                                                                    <td>(0123) - 4567891</td>
-                                                                </tr>
+                                                                
 
                                                             </tbody>
                                                         </table>
@@ -213,7 +198,7 @@
 
                            <div class="row">
                                
-                                                           <div class="col-lg-12 col-xl-6">
+                                    <div class="col-lg-12 col-xl-6">
                                     <table class="table m-0">
                                         <tbody>
                                             <tr>

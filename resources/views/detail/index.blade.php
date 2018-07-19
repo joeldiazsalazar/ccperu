@@ -50,9 +50,8 @@
       		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     	 {!! Form::close() !!}
     </div>
-	<table class="table table-hover">
-	
-
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 <thead>
 	<tr>
 	<th>ID</th>
@@ -69,19 +68,19 @@
 	
 	@foreach ($detail as $details)
 <tr>
-	<td>{{ $details->id }}</td>
+	<td data-title="ID">{{ $details->id }}</td>
 
-	<td>{{ $details->programming->nivel.'-'.$details->programming->grado.'-'.$details->programming->classroom->pabellon  }}</td>
+	<td data-title="Programacion">{{ $details->programming->nivel.'-'.$details->programming->grado.'-'.$details->programming->classroom->pabellon  }}</td>
 
-	<td>{{ $details->teacher->nombres }}</td>
+	<td data-title="Docente">{{ $details->teacher->nombres }}</td>
 
-	<td>{{ $details->course->name}}</td>
+	<td data-title="Curso">{{ $details->course->name}}</td>
 
-	<td>{{ $details->hour_start}}</td>
+	<td data-title="Hora Inicio">{{ $details->hour_start}}</td>
 
-	<td>{{ $details->hour_end}}</td>
+	<td data-title="Hora Fin">{{ $details->hour_end}}</td>
 
-	<td>{{ $details->day}}</td>
+	<td data-title="Dia">{{ $details->day}}</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('details.edit', $details->id) }}">Editar</a>
@@ -101,6 +100,7 @@
 	@endforeach
 </tbody>
 </table>
+</div>
 {{ $detail->links('vendor.pagination.bootstrap-4') }}
 
 </div>

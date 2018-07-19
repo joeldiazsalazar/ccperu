@@ -53,7 +53,8 @@
     	 {!! Form::close() !!}
     </div>
 
-<table class="table table-hover">
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
@@ -71,13 +72,13 @@
 	
 	@foreach ($teacher as $teachers)
 	<tr>
-	<td>{{ $teachers->id }}</td>
+	<td data-title="ID">{{ $teachers->id }}</td>
 
-	<td>{{ $teachers->nombres }}</td>
-	<td>{{ $teachers->apellidoPaterno}}</td>
-	<td>{{ $teachers->apellidoMaterno}}</td>
-	<td>{{ $teachers->dni}}</td>
-	<td>{{ $teachers->estado}}</td>
+	<td data-title="Nombres">{{ $teachers->nombres }}</td>
+	<td data-title="ApellidoPaterno">{{ $teachers->apellidoPaterno}}</td>
+	<td data-title="ApellidoMaterno">{{ $teachers->apellidoMaterno}}</td>
+	<td data-title="Dni">{{ $teachers->dni}}</td>
+	<td data-title="Estado">{{ $teachers->estado}}</td>
 
 {{-- 	<td>
 
@@ -115,6 +116,7 @@
 	
 </tbody>
 </table>
+</div>
 {{ $teacher->links('vendor.pagination.bootstrap-4') }}
 </div>
 

@@ -46,7 +46,7 @@
 		<tr>
 			{{-- <td> {{ $details->id }}</td> --}}
 			{{-- <td> {{ $details->teacher_id }}</td> --}}
-			<td> {{ $details->programming->id }}</td>
+			<td> {{ $details->programming->id.'-'.$details->programming->classroom->pabellon.' '.$details->programming->nivel }}</td>
 			<td> <a href="{{ route('teacher.control', $details->programming->id )}}">{{ $details->course->name }}</a></td>
 			{{-- <td> {{ $details->hour_start }}</td> --}}
 		</tr>

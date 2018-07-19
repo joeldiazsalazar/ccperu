@@ -45,4 +45,11 @@ class Enrollment extends Model
         
         return $this->hasMany(Qualification::class);
     }
+
+    public function payment(){
+        
+        return $this->hasMany(Payment::class);
+    }
+
+
 }

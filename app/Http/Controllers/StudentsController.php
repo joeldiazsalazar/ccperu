@@ -105,7 +105,7 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ValidateStudentRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $students = Student::findOrFail($id);
 
@@ -167,41 +167,56 @@ class StudentsController extends Controller
          $as = Enrollment::all()->where('user_id',$id);
 
          foreach ($as as $enrollment) {
-             
+
               $then = $enrollment->programming->id;
+              $getEstado = $enrollment->estado;
+         }
+
+         if ($getEstado === "activo") {
+                
+             $detalles = Detail::all()->where('programming_id', $then)->where('day','lunes')->sortByDesc('hour_start');
+
+             $det_mart = Detail::all()->where('programming_id', $then)->where('day','martes')->sortByDesc('hour_start');
+
+             $det_mier = Detail::all()->where('programming_id', $then)->where('day','miercoles')->sortByDesc('hour_start');
+
+             $det_juev = Detail::all()->where('programming_id', $then)->where('day','jueves')->sortByDesc('hour_start');
+
+             $det_vier = Detail::all()->where('programming_id', $then)->where('day','viernes')->sortByDesc('hour_start');
+
+            return view('student.detail.detail',compact('as','detalles','det_mart','det_mier','det_juev','det_vier'));
+
+         }else if($getEstado === "inactivo"){
+
+            $message = "Regularize sus pagos";
+            echo "<script type='text/javascript'>alert('$message');</script>";
          }
          
-         $detalles = Detail::all()->where('programming_id', $then)->where('day','lunes')->sortByDesc('hour_start');
-
-         $det_mart = Detail::all()->where('programming_id', $then)->where('day','martes')->sortByDesc('hour_start');
-
-         $det_mier = Detail::all()->where('programming_id', $then)->where('day','miercoles')->sortByDesc('hour_start');
-
-         $det_juev = Detail::all()->where('programming_id', $then)->where('day','jueves')->sortByDesc('hour_start');
-
-         $det_vier = Detail::all()->where('programming_id', $then)->where('day','viernes')->sortByDesc('hour_start');
-
-        return view('student.detail.detail',compact('as','detalles','det_mart','det_mier','det_juev','det_vier'));
+         
     }
 
         public function prog($id)
     {
+        $enroll = Enrollment::all()->where('user_id',$id);
+        foreach ($enroll as $enrollment) {
 
+              $getEstado = $enrollment->estado;
+         }
 
-        // $as = Enrollment::all()->where('user_id',$id);
+         if ($getEstado === "activo") {
 
-
-
-        //  foreach ($as as $enrollment) {
-             
-        //       $then = $enrollment->id;
-            
-        //  }
-
-         
         $qualification = Qualification::all()->where('user_id', $id)->where('trimester_id', '1')->sortBy("course_id");
 
         return view('student.detail.prog',compact('qualification'));
+
+          }else if($getEstado === "inactivo"){
+            $message = "Regularize sus pagos";
+            echo '<script type="text/javascript">'; 
+            echo 'alert("Porfavor Regularize sus pagos");'; 
+            echo 'window.location.href = "/home";';
+            echo '</script>';
+
+         }
     }
 
 

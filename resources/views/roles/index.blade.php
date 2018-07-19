@@ -38,8 +38,8 @@
 
 <div class="card-block">
 
-
-	<table class="table table-hover">
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
@@ -55,13 +55,13 @@
 	
 	@foreach ($roles as $rol)
 <tr>
-	<td>{{ $rol->id }}</td>
+	<td data-title="ID">{{ $rol->id }}</td>
 
-	<td>{{ $rol->name }}</td>
+	<td data-title="Nombre">{{ $rol->name }}</td>
 
-	<td>{{ $rol->display_name }}</td>
+	<td data-title="Display">{{ $rol->display_name }}</td>
 
-	<td>{{ $rol->description}}</td>
+	<td data-title="Descripcion">{{ $rol->description}}</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('roles.edit', $rol->id) }}">Editar</a>
@@ -80,11 +80,11 @@
 </tr>
 	@endforeach
 
-	{{ $roles->links() }}
+	
 </tbody>
 </table>
-
-
+</div>
+{{ $roles->links('vendor.pagination.bootstrap-4') }}
 
 
 </div>

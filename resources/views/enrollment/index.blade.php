@@ -50,9 +50,8 @@
       		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     	 {!! Form::close() !!}
     </div>
-	<table class="table table-hover">
-	
-
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 <thead>
 	<tr>
 	<th>ID</th>
@@ -68,20 +67,24 @@
 	
 	@foreach ($enrollment as $enrollments)
 <tr>
-	<td>{{ $enrollments->id }}</td>
+	<td data-title="ID">{{ $enrollments->id }}</td>
 
-	<td>
+	<td data-title="Nombres">
 		{{ $enrollments->student->nombres }}</td>
 
-	<td>{{ $enrollments->user->username }}</td>
+	<td data-title="Codigo">
 
-	<td>{{ $enrollments->monto}}</td>
+		<a href="{{ route('enrollments.show', $enrollments->id)}}"> Ver ficha de matricula {{ $enrollments->user->username }}</a>
 
-	<td>{{ $enrollments->estado}}</td>
+	</td>
 
-	<td>{{ $enrollments->programming->nivel}}</td>
+	<td data-title="Monto">{{ $enrollments->monto}}</td>
 
-	<td>
+	<td data-title="Estado">{{ $enrollments->estado}}</td>
+
+	<td data-title="Nivel">{{ $enrollments->programming->nivel}}</td>
+
+	<td >
 				<a class="btn btn-info btn-xs" href="{{ route('enrollments.edit', $enrollments->id) }}">Editar</a>
 
 
@@ -99,6 +102,7 @@
 	@endforeach
 </tbody>
 </table>
+</div>
 {{ $enrollment->links('vendor.pagination.bootstrap-4') }}
 
 </div>

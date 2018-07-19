@@ -23,9 +23,43 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'username' => 'required|unique:users,username,'.$this->route('id')
-        ];
+        if (auth()->check()){
+                    
+                if (auth()->user()->hasRoles(['admin'])) {
+                    
+
+                        return [
+                                    'name' => '',
+                                    'avatar' => 'image',
+                                    'username' => 'unique:users,username,'.$this->route('id'),
+                                    'password' =>'confirmed'
+                                ];
+
+                }elseif (auth()->user()->hasRoles(['alumno'])) {
+                     return [
+                                    'name' => '',
+                                    'avatar' => 'image',
+                                    'username' => 'unique:users,username,'.$this->route('id'),
+                                    'password' =>'required|confirmed'
+                                ];
+                }
+                elseif (auth()->user()->hasRoles(['docente'])) {
+                    return [
+                                    'name' => '',
+                                    'avatar' => 'image',
+                                    'username' => 'unique:users,username,'.$this->route('id'),
+                                    'password' =>'required|confirmed'
+                                ];
+                }
+                elseif (auth()->user()->hasRoles(['apoderado'])) {
+                    return [
+                                    'name' => '',
+                                    'avatar' => 'image',
+                                    'username' => 'unique:users,username,'.$this->route('id'),
+                                    'password' =>'required|confirmed'
+                                ];
+                }
+            }
+        
     }
 }

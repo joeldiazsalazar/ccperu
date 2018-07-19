@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -14,7 +14,7 @@
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/intranet.png')}}"/>
 
-      <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/icofont/css/icofont.css')}}">
 
      <!-- Google font-->
     <link href="{{ asset('assets/css/font-awesome.min.css" rel="stylesheet')}}" type="text/css">
@@ -29,7 +29,7 @@
      <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 
      <!-- Date Picker css -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" />
+     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" />
 
      <!-- Weather css -->
      <link href="{{ asset('assets/css/svg-weather.css')}}" rel="stylesheet">
@@ -54,7 +54,13 @@
      <link href="{{ asset('css/mdtimepicker.css')}}" rel="stylesheet" type="text/css">
 
 
-     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css')}}">
+     <link rel="stylesheet" type="text/css" href="{{ asset('css/table.css')}}">
+
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css">
+
+     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
      
  </head>
 
@@ -64,11 +70,7 @@
         </div>
     </div>
     <div class="wrapper">
-    <!--   <div class="loader-bg">
-    <div class="loader-bar">
-    </div>
-</div> -->
-<!-- Navbar-->
+
 <header class="main-header-top hidden-print">
 
 
@@ -121,7 +123,7 @@
                         	@else
 
                             <a href="#!" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle drop icon-circle drop-image">
-                                <span><img class="img-circle " src="{{ asset('assets/images/avatar-1.png')}}" style="width:40px;" alt="User Image"></span>
+                                <span><img class="img-circle " src="{{ Storage::url(Auth::user()->avatar)}}" style="width:40px;" alt="User Image"></span>
                                 <span>{{ Auth::user()->name }}<i class=" icofont icofont-simple-down"></i></span>
 
                             </a>
@@ -165,7 +167,7 @@
             <section class="sidebar" id="sidebar-scroll">
                 
                 <div class="user-panel">
-                    <div class="f-left image"><img src="{{ asset('assets/images/avatar-1.png')}}" alt="User Image" class="img-circle"></div>
+                    <div class="f-left image"><img src="{{ Storage::url(Auth::user()->avatar)}}" alt="User Image" class="img-circle"></div>
                     <div class="f-left info">
                     	@guest
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -234,7 +236,8 @@
                             
                             {{-- <li class="{{ activeMenu('users/create')}}"><a class="waves-effect waves-dark" href="{{ route('users.create')}}"><i class="icon-arrow-right"></i> Agregar usuario</a></li> --}}
                             <li class="{{ activeMenu('users/index')}}"><a class="waves-effect waves-dark" href="{{ route('users.index')}}"><i class="icon-arrow-right"></i> Lista Usuarios</a></li>
-                            <li><a class="waves-effect waves-dark" href="{{ route('statistics.index')}}"><i class="icon-arrow-right"></i>Reportes</a></li>                          
+                            <li><a class="waves-effect waves-dark" href="{{ route('statistics.index')}}"><i class="icon-arrow-right"></i> Estadisticas</a></li>
+                            <li><a class="waves-effect waves-dark" href="{{ route('reports.index')}}"><i class="icon-arrow-right"></i> Informes</a></li>                          
                         </ul>
                     </li>
 
@@ -295,11 +298,16 @@
                             <li><a class="waves-effect waves-dark" href="/students/detail/course/note/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Notas</a></li>
 
                             <li><a class="waves-effect waves-dark" href="/students/detail/course/assistance/{{ auth()->id() }}"><i class="icon-arrow-right"></i> Historial Asistencia</a></li>
-                          
-                          
+
                         </ul>
                     </li>
 
+                     <li class="{{ activeMenu('students/detail*')}} treeview"><a class="waves-effect waves-dark" href="#!"><i class="icon-briefcase"></i><span>Pagos</span><i class="icon-arrow-down"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a class="waves-effect waves-dark" href="/students/payment/show/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Mi pagos</a></li>
+                            <li><a class="waves-effect waves-dark" href="/students/payment/detail/{{ auth()->id()}}"><i class="icon-arrow-right"></i> Historial Pagos</a></li>
+                        </ul>
+                    </li>
                     @endif
 
                     @if (auth()->user()->hasRoles(['apoderado']))
@@ -357,9 +365,25 @@
 
 </div>
 </div>
+</div>
+</div>
 
-      <script src="{{asset('assets/plugins/jquery/dist/jquery.min.js')}}"></script>
+    
+      
+       
+     
+      <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
 
+      
+      <script type="text/javascript" src="{{ asset('js/pagos.js')}}" ></script>
       <script type="text/javascript">
           function calcularUpdate() { 
               n1 = parseFloat(document.getElementById('n1').value); 
@@ -369,49 +393,55 @@
               var rest =(n1+n2+n3+n4)/4;
                 if(!isNaN(rest))
                 document.getElementById('total').value = rest.toFixed(2);
+            }
+
+            function actualizarPago() { 
+              pagos = (document.getElementById('pago').value); 
+              precioPago = (document.getElementById('precioPago').value); 
+              // n3 = parseFloat(document.getElementById('n3').value); 
+              // n4 = parseFloat(document.getElementById('n4').value); 
+              var rest =(pagos-precioPago);
+
+
+              var estatus = "cancelado";
+              var estatusdef  = "pendiente";
+              var restdefaul = "0";
+
+              var pgdeuda = document.getElementById('pagodeuda').value;
+
+                  if ( rest == '0') {
+                    $("#pagoestado").addClass('aaaa');
+                    document.getElementById('pagodeuda').value = rest;
+                    document.getElementById('pagoestado').value = estatus;
+                  }else if( rest > 0){
+                    $("#pagoestado").removeClass('aaaa');
+                    document.getElementById('pagodeuda').value = restdefaul;
+                    document.getElementById('devolucion').value = rest;
+                    document.getElementById('pagoestado').value = estatus;
+                    
+                  }else if( pagos !== null && pagos !== ''){
+                    $("#pagoestado").removeClass('aaaa');
+                    document.getElementById('pagodeuda').value = precioPago;
+                    document.getElementById('pagoestado').value = estatusdef;
+                    document.getElementById('devolucion').value = restdefaul;
+                  }  
+                
+                
+                        
+                    
+                // document.getElementById('pagodeuda').value = rest.toFixed(2);
+
+
             } 
+
+
+
+
+
       </script>
 
       <script type="text/javascript" src="{{ asset('js/validate.js')}}" ></script>
-      {{-- <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script> --}}
-
-
-
-      {{--  <script type="text/javascript">
-       
-        $("#programacion").change(function(){
-
-        var valor_combo_id=$(this).val();
-
-         $.ajax({
-                url: "/refresc",
-                type: "GET", //send it through get method
-                data: { 
-                    valor_combo_id: valor_combo_id            
-                },
-        success: function(response) {
-
-
-
-            }
-          
-        // $("#resultado").html(valor_combo_id);
-
-
-         console.log(response);
-        
-           // console.log(response); //aqui haces la magia xd xD aca le pongo la tabla no?..siii ahi es la voz....
-            //yo lo puse en consola para q veas...q te rtae los  lo listo con ese  valor_combo_id y atraves de ello acceso a los campos?
-        },
-        error: function(xhr) {
-          console.log("error");
-        }
-        
-        });     
-
-
-
-   </script> --}}
+     
 
 
       <script src="{{ asset('js/mdtimepicker.js')}}"></script>
@@ -419,6 +449,8 @@
                   $(document).ready(function(){
                     $('#timepicker').mdtimepicker(); //Initializes the time picker
                      $('#timepicker1').mdtimepicker(); //Initializes the time picker
+                     $('#timepicker3').mdtimepicker(); //Initializes the time picker
+
                   });
                 </script>
 
@@ -449,6 +481,10 @@
             document.getElementById("name").value=document.getElementById("nombres").value;
         }
 
+        function copymonto(){
+            document.getElementById("adeuda").value=document.getElementById("monto").value;
+        }
+
       </script>
       
 
@@ -464,6 +500,13 @@
                     $('#schearDetail').select2();
 
                     $('#schearCourse').select2();
+
+                     $('#schearEnrollmentUser').select2();
+
+                      $('#schearEnrollmentStudent').select2();
+
+                       $('#schearProgrammingClass').select2();
+                     
 
             });
         </script>
@@ -680,62 +723,7 @@ $.pushMenu.activate("[data-toggle='offcanvas']");
 
 
 /* Search header start */
-(function() {
-    var isAnimating;
-    var morphSearch = document.getElementById('morphsearch'),
-        input = morphSearch.querySelector('input.morphsearch-input'),
-        ctrlClose = morphSearch.querySelector('span.morphsearch-close'),
-        isOpen = isAnimating = false,
-        isHideAnimate = morphsearch.querySelector('.morphsearch-form'),
-        // show/hide search area
-        toggleSearch = function(evt) {
-            // return if open and the input gets focused
-            if (evt.type.toLowerCase() === 'focus' && isOpen) return false;
 
-            var offsets = morphsearch.getBoundingClientRect();
-            if (isOpen) {
-                classie.remove(morphSearch, 'open');
-
-                // trick to hide input text once the search overlay closes
-                // todo: hardcoded times, should be done after transition ends
-                //if( input.value !== '' ) {
-                setTimeout(function() {
-                    classie.add(morphSearch, 'hideInput');
-                    setTimeout(function() {
-                        classie.add(isHideAnimate, 'p-absolute');
-                        classie.remove(morphSearch, 'hideInput');
-                        input.value = '';
-                    }, 300);
-                }, 500);
-                //}
-
-                input.blur();
-            } else {
-                classie.remove(isHideAnimate, 'p-absolute');
-                classie.add(morphSearch, 'open');
-            }
-            isOpen = !isOpen;
-        };
-
-    // events
-    input.addEventListener('focus', toggleSearch);
-    ctrlClose.addEventListener('click', toggleSearch);
-    // esc key closes search overlay
-    // keyboard navigation events
-    document.addEventListener('keydown', function(ev) {
-        var keyCode = ev.keyCode || ev.which;
-        if (keyCode === 27 && isOpen) {
-            toggleSearch(ev);
-        }
-    });
-    var morphSearch_search = document.getElementById('morphsearch-search');
-    morphSearch_search.addEventListener('click', toggleSearch);
-
-    /***** for demo purposes only: don't allow to submit the form *****/
-    morphSearch.querySelector('button[type="submit"]').addEventListener('click', function(ev) {
-        ev.preventDefault();
-    });
-})();
 /* Search header end */
 
 // toggle full screen

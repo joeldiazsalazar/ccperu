@@ -50,15 +50,15 @@
       		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     	 {!! Form::close() !!}
     </div>
-
-	<table class="table table-hover">
+    <div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 	
 
 <thead>
 	<tr>
 	<th>ID</th>
 	<th>Nombre</th>
-	<th>Docente</th>
+	<th>Fecha de creacion</th>
 	<th>Acciones</th>
 	</tr>
 </thead>
@@ -66,15 +66,12 @@
 	
 	@foreach ($course as $courses)
 <tr>
-	<td>{{ $courses->id }}</td>
+	<td data-title="ID">{{ $courses->id }}</td>
 
-	<td>{{ $courses->name }}</td>
+	<td data-title="Nombre">{{ $courses->name }}</td>
 
-	<td>
+	<td data-title="Fecha">{{ $courses->created_at}}</td>
 
-
-
-	</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('courses.edit', $courses->id) }}">Editar</a>
@@ -96,6 +93,7 @@
 	
 </tbody>
 </table>
+</div>
 {{ $course->links('vendor.pagination.bootstrap-4') }}
 
 </div>

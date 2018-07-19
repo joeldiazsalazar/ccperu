@@ -84,7 +84,7 @@
 <div class="form-group">
     <label for="classroom_id" class="form-control-label">Salon</label>
         
-        <select name="classroom_id">
+        <select name="classroom_id" id="schearProgrammingClass" style="width: 80px;">
 
             @foreach($classroom as $classrooms)
             
@@ -95,10 +95,6 @@
 
         {!! $errors->first('classroom_id','<span class=error>:message</span>')!!}
 </div>
-
-
-
-
 
 <input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">
 

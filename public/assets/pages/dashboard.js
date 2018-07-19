@@ -17,53 +17,9 @@ $('.counter').counterUp({
           });
           var wid = $('#areachart').parent().width();
 
-          function rikshaw_chart(wid) {
-              var graph = new Rickshaw.Graph({
-                  element: document.querySelector("#areachart"),
-                  width: wid,
-                  height: 200,
-                  series: [{
-                      color: '#2196F3',
-                      data: [{
-                          x: 0,
-                          y: 10
-                      }, {
-                          x: 1,
-                          y: 16
-                      }, {
-                          x: 2,
-                          y: 50
-                      }, {
-                          x: 3,
-                          y: 25
-                      }, {
-                          x: 4,
-                          y: 15
-                      }, {
-                          x: 5,
-                          y: 15
-                      }, {
-                          x: 6,
-                          y: 35
-                      }, {
-                          x: 7,
-                          y: 15
-                      }]
-                  }]
-              });
-
-              graph.render();
-          }
-          rikshaw_chart(wid);
+        
           // Area Chart ends
 //  Resource bar
-    $(".resource-barchart").sparkline([5, 6, 2, 4, 9, 1, 2, 8, 3, 6, 4,2,1,5], {
-              type: 'bar',
-              barWidth: '15px',
-              height: '80px',
-              barColor: '#fff',
-            tooltipClassname:'abc'
-          });
 
 
            

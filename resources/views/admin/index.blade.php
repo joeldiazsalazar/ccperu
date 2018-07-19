@@ -8,7 +8,7 @@
       <div class="card">
        <div class="card-header"><h5 class="card-header-text">INSTITUCION EDUCATIVA CESAR vallejo mendoza</h5></div>
         <div class="card-block">
-          <center><img src="{{ asset('/img/banner.jpg')}}" class="img-responsive" style="text-align: center;"></center>
+          <center><img src="{{ asset('/img/banner.jpg')}}" class="img-fluid" style="text-align: center;"></center>
       </div>
     </div>
 

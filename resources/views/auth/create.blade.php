@@ -28,7 +28,7 @@
                 </div>
                     <div class="row">
                     <!-- Form Control starts -->
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header"><h5 class="card-header-text">Control de usuarios</h5>
                                 <div class="f-right">
@@ -38,18 +38,34 @@
 
 <div class="card-block">
     
-<form method="POST" action=" {{ route('users.store')}} ">
+<form method="POST" action=" {{ route('users.store')}} " enctype="multipart/form-data">
 
     {!! csrf_field() !!}
 
-<div class="form-group">
+
+
+<div class="form-group col-md-6">
+
+<label for="avatar" class="col-md-5 col-form-label form-control-label">Avatar</label>
+    <div class="col-md-9">
+        
+            <input type="file" name="avatar">
+           
+        {!! $errors->first('avatar','<span class=error>:message</span>')!!}
+    </div>
+
+</div>
+
+
+<div class="form-group col-md-6">
     <label for="exampleInputEmail1" class="form-control-label">Nombre Completo</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" name="name" value="{{ old('name')}}">
 
     {!! $errors->first('name','<span class=error>:message</span>')!!}
 </div>
 
-<div class="form-group">
+
+<div class="form-group col-md-6">
     <label for="exampleInputEmail1" class="form-control-label">Username</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username" value="{{ old('username')}}">
 
@@ -57,16 +73,16 @@
 </div>
  
  
-<div class="form-group">
-    <label for="exampleInputPassword1" class="form-control-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"  name="password" value="{{ old('password')}}">
+<div class="form-group col-md-6">
+    <label for="password" class="form-control-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password"  name="password" value="{{ old('password')}}">
 
         {!! $errors->first('password','<span class=error>:message</span>')!!}
 </div>
  
 
  
-<div class="form-group">
+<div class="form-group col-md-6">
     <label for="exampleSelect1" class="form-control-label">Rol</label>
         <select class="form-control" id="exampleSelect1" name="role_id"">
            @foreach ($roles as $rol)
@@ -77,9 +93,9 @@
         {!! $errors->first('role_id','<span class=error>:message</span>')!!}
 </div>
 
-
+<div class="form-group col-md-12">
 <input class="btn btn-success waves-effect waves-light m-r-30" type="submit" name="Enviar">
-
+</div>
 </form>
 </div>
 </div>

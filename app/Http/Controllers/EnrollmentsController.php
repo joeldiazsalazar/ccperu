@@ -11,6 +11,7 @@ use App\Attorney;
 use Alert;
 use App\Programming;
 use App\Classroom;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EnrollmentsController extends Controller
 {
@@ -66,290 +67,37 @@ class EnrollmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $enrollment = Enrollment::create($request->all());
-        $enrollment->save();
+
+        $getProgId = $request->programming_id;
+
+        if ($getProgId) {
+  
+             $class = Classroom::findOrFail($getProgId);
+
+             $getIDclass = $class->vacante;
+             if ($getIDclass === 0) {
+                 Alert::warning('No hay vacantes disponibles')->html()->persistent("Entendido");
+                 return back();
+             
+             }else{
+                $c = '1';
+                $enrollment = Enrollment::create($request->all());
+                $enrollment->save();
+
+                $rest = $class->vacante;
+
+                $class->vacante =  $rest - $c;
+
+                $class->update();
 
 
-
-        if ($enrollment->programming_id === '1') {
+             Alert::success('<a href="/enrollments/create/">Desea agregar otro Matricula?</a>')->html()->persistent("No, Gracias");
             
-            $c = '1';
-            $id = '1';
-                  
-            $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-
-        }elseif ($enrollment->programming_id === '2') {
-            
-             $c = '1';
-             $id = '2';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '3') {
-            
-             $c = '1';
-             $id = '3';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '4') {
-            
-             $c = '1';
-             $id = '4';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '5') {
-            
-             $c = '1';
-             $id = '5';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '6') {
-            
-             $c = '1';
-             $id = '6';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '7') {
-            
-             $c = '1';
-             $id = '7';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '8') {
-            
-             $c = '1';
-             $id = '8';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '9') {
-            
-             $c = '1';
-             $id = '9';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '10') {
-            
-             $c = '1';
-             $id = '10';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '11') {
-            
-             $c = '1';
-             $id = '11';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '12') {
-            
-             $c = '1';
-             $id = '12';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '13') {
-            
-             $c = '1';
-             $id = '13';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '14') {
-            
-             $c = '1';
-             $id = '14';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '15') {
-            
-             $c = '1';
-             $id = '15';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '16') {
-            
-             $c = '1';
-             $id = '16';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '17') {
-            
-             $c = '1';
-             $id = '17';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '18') {
-            
-             $c = '1';
-             $id = '18';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '19') {
-            
-             $c = '1';
-             $id = '19';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '20') {
-            
-             $c = '1';
-             $id = '20';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '21') {
-            
-             $c = '1';
-             $id = '21';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
-        }elseif ($enrollment->programming_id === '22') {
-            
-             $c = '1';
-             $id = '22';
-                  
-             $class = Classroom::findOrFail($id);
-
-             $rest = $class->vacante;
-
-             $class->vacante =  $rest - $c;
-
-             $class->update();
+             return redirect()->route('enrollments.index');
+             }
         }
 
 
-        // Redireccionar mensaje
-
-        //Alert::success('Good job!')->persistent("Close");
-        //return back()->with('info','Rol Agregado');   
-
-
-        // alert()->success('Rol Creado')->persistent("Cerrar");
-        Alert::success('<a href="/enrollments/create/">Desea agregar otro Matricula?</a>')->html()->persistent("No, Gracias");
-            
-        return redirect()->route('enrollments.index');
-        
     }
 
     /**
@@ -360,8 +108,38 @@ class EnrollmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $enrollment = Enrollment::findOrFail($id);
+
+        $objuser = $enrollment->user_id;
+
+        return view('enrollment.show', compact('enrollment'));
     }
+
+
+    public function pdf($id)
+    {        
+        /**
+         * toma en cuenta que para ver los mismos 
+         * datos debemos hacer la misma consulta
+        **/
+        $enrollment = Enrollment::findOrFail($id);
+        $object = $enrollment->id;
+
+        date_default_timezone_set('America/Bogota');
+
+        $now = new \DateTime();
+
+        $getFecha  = $now->format('d/m/Y:H:i:s');
+
+        // return view('pdf.enrollments', compact('enrollment','now'));
+
+        $pdf = PDF::loadView('pdf.enrollments', compact('enrollment','getFecha'));
+
+
+        return $pdf->download($getFecha.''.'.pdf');
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -381,6 +159,12 @@ class EnrollmentsController extends Controller
 
        return view('enrollment.edit', compact('enrollment','programming','user','students'));
     }
+
+
+    
+
+
+
 
     /**
      * Update the specified resource in storage.

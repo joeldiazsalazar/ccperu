@@ -18,6 +18,10 @@ class LoginController extends Controller
     |
     */
 
+
+// if (auth()->user()->hasRoles(['admin'])) {
+//                 return redirect('/listado_graficas');
+//             }
     use AuthenticatesUsers;
 
     /**
@@ -25,8 +29,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cpanel';
 
+
+
+    // protected $redirectTo = '/cpanel';
+    //     protected function authenticated(Request $request, $user)
+    // {
+    //         if ($user->hasRoles(['admin'])) {
+    //             return redirect('/listado_graficas');
+    //         }
+    // }
 
     /**
      * Create a new controller instance.

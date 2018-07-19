@@ -18,7 +18,6 @@ class ClassroomsController extends Controller
   public function index(Request $request)
     {   
 
-
         if ($request->search == "") {
            $classroom = Classroom::paginate(5);
            return view('classroom.index',compact('classroom'));

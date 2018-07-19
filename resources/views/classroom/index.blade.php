@@ -50,9 +50,8 @@
     	 {!! Form::close() !!}
     </div>
 
-	<table class="table table-hover">
-	
-
+<div id="no-more-tables">
+	<table class="col-sm-12 table-bordered table-striped table-condensed cf">
 <thead>
 	<tr>
 	<th>ID</th>
@@ -67,15 +66,15 @@
 	
 	@foreach ($classroom as $classrooms)
 <tr>
-	<td>{{ $classrooms->id }}</td>
+	<td data-title="ID">{{ $classrooms->id }}</td>
 
-	<td>{{ $classrooms->nombre }}</td>
+	<td data-title="Nombre">{{ $classrooms->nombre }}</td>
 
-	<td>{{ $classrooms->capacidad }}</td>
+	<td data-title="Capacidad">{{ $classrooms->capacidad }}</td>
 
-	<td>{{ $classrooms->vacante}}</td>
+	<td data-title="Vacante">{{ $classrooms->vacante}}</td>
 
-	<td>{{ $classrooms->pabellon}}</td>
+	<td data-title="Pabellon">{{ $classrooms->pabellon}}</td>
 
 	<td>
 				<a class="btn btn-info btn-xs" href="{{ route('classrooms.edit', $classrooms->id) }}">Editar</a>
@@ -95,6 +94,7 @@
 	@endforeach
 </tbody>
 </table>
+</div>
 {{ $classroom->links('vendor.pagination.bootstrap-4') }}
 </div>
 
